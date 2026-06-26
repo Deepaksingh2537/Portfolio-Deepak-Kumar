@@ -320,7 +320,7 @@ function initializePortfolio() {
     window.addEventListener('load', () => {
         const tl = gsap.timeline();
         tl.to("#loader-fill", { width: "100%", duration: 1 })
-            .to("#loader", { yPercent: -100, duration: 1.9, ease: "expo.inOut" })
+            .to("#loader", { yPercent: -100, duration: 2.7, ease: "expo.inOut" })
             .from("#hero-title", {
                 opacity: 0,
                 y: 100,
