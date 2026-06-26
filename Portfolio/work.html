@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Front-End Engineer Portfolio</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Family -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Css File -->
+    <link rel="styleSheet" href="portfolio.css" type="text/css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+
+    <!-- Standard favicon -->
+    <link rel="icon" href="assets/images/favicon.png" sizes="any">
+
+    <!-- PNG favicons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.png">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon.png">
+
+    <!-- Android / Chrome -->
+    <link rel="manifest" href="assets/images/favicon.png">
+
+    <!-- Windows tiles -->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/images/favicon.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+</head>
+
+<body>
+
+    <div id="scroll-progress-container">
+        <div id="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Mouse Cursor -->
+    <div id="cursor" class="hidden md:block"></div>
+
+
+    <div id="menu-overlay">
+        <div class="flex flex-col text-right gap-4">
+            <a href="#hero" class="menu-link" onclick="toggleMenu()">HOME</a>
+            <a href="about.html" class="menu-link" onclick="toggleMenu()">About</a>
+            <a href="work.html" class="menu-link" onclick="toggleMenu()">WORK</a>
+            <a href="contact.html" class="menu-link" onclick="toggleMenu()">CONTACT</a>
+        </div>
+    </div>
+
+    <nav id="main-nav"
+        class="fixed top-0 left-1/2 -translate-x-1/2 bg-[#000] w-full  z-[250] p-6 md:py-4 md:px-16 flex justify-between items-center transition-colors duration-500">
+        <a href="home.html" class="sync text-xl font-bold text-[#ff9800] tracking-tighter">
+            <img src="assets/images/Logo.png" width="120px" height="120px">
+        </a>
+
+        <button onclick="toggleMenu()" class="flex flex-col items-end gap-1.5 group p-2">
+            <div id="line1" class="w-12 h-[2px] bg-white transition-all duration-300"></div>
+            <div id="line2" class="w-8 h-[2px] bg-white transition-all duration-300 group-hover:w-8"></div>
+        </button>
+    </nav>
+
+    <section class="bg-[#0a0a0a] py-24 px-6">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="work-header py-12">
+                <div class="overflow-hidden">
+                    <p class="work-subtext text-[#ff9800] uppercase tracking-[0.4em] text-xs font-black mb-6">
+                        Selected Projects
+                    </p>
+                </div>
+
+                <h2 class="text-[12vw] md:text-[8vw] font-bold leading-[0.85] tracking-tighter uppercase">
+                    <div class="overflow-hidden">
+                        <span class="work-title-line block">
+                            Our <span class="text-zinc-800 outline-text">Work</span>
+                        </span>
+                    </div>
+                    <div class="overflow-hidden">
+                        <span class="work-title-line block italic font-light text-zinc-400">
+                            Archive.
+                        </span>
+                    </div>
+                </h2>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-showcase" class="bg-[#0a0a0a] text-white py-12 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="text-center mb-16 overflow-hidden">
+                <h2 class="hero-title text-[8vw] md:text-[6vw] font-bold leading-none tracking-tighter uppercase mb-6">
+                    MODERN <span class="text-zinc-800 outline-text">PORTFOLIO</span> WEBSITE
+                </h2>
+                <p class="max-w-2xl mx-auto text-zinc-500 text-sm md:text-base leading-relaxed">
+                    A complete website transformation focused on modern aesthetics, improved usability, and seamless
+                    user experience. The redesign enhanced visual appeal and optimized performance.
+                </p>
+            </div>
+
+            <div class="project-image-container relative w-full aspect-video overflow-hidden mb-16 bg-zinc-900">
+                <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70"
+                    class="main-img w-full h-full object-cover grayscale-0 scale-110" alt="Project Hero">
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 border-y border-zinc-800 py-10 mb-20">
+                <div class="metadata-item px-4 border-r border-zinc-800">
+                    <p class="text-[10px] uppercase tracking-widest text-zinc-600 mb-2">Year</p>
+                    <h4 class="text-2xl font-bold">2026</h4>
+                </div>
+                <div class="metadata-item px-4 border-r border-zinc-800">
+                    <p class="text-[10px] uppercase tracking-widest text-zinc-600 mb-2">Client</p>
+                    <h4 class="text-2xl font-bold uppercase">Gregory M Brooks</h4>
+                </div>
+                <div class="metadata-item px-4 border-r border-zinc-800">
+                    <p class="text-[10px] uppercase tracking-widest text-zinc-600 mb-2">Category</p>
+                    <h4 class="text-2xl font-bold uppercase">Mobile Design</h4>
+                </div>
+                <div class="metadata-item px-4">
+                    <p class="text-[10px] uppercase tracking-widest text-zinc-600 mb-2">Budget</p>
+                    <h4 class="text-2xl font-bold uppercase">200M</h4>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-8 space-y-12">
+                    <div class="content-block">
+                        <h3 class="text-xl font-bold uppercase tracking-widest mb-6">Research</h3>
+                        <p class="text-zinc-400 text-lg leading-relaxed">
+                            A detailed UX audit was conducted to understand user behavior and identify major usability
+                            gaps in the old website. Through user feedback and analytics, we discovered that navigation
+                            and visual consistency were the main issues.
+                        </p>
+                    </div>
+                    <div class="content-block">
+                        <h3 class="text-xl font-bold uppercase tracking-widest mb-6 text-[#ff9800]">Challenge</h3>
+                        <p class="text-zinc-400 text-lg leading-relaxed">
+                            The existing site looked outdated and lacked responsive design. Maintaining brand identity
+                            while creating a modern and intuitive interface was a key challenge.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-4 flex flex-col gap-6">
+                    <div class="bg-black p-8 rounded-3xl border border-zinc-800">
+                        <p class="text-xs uppercase tracking-widest text-zinc-500 mb-4">Availability</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]">
+                            </div>
+                            <h4 class="text-lg font-bold uppercase">AVAILABLE NOW</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-detail" class="bg-[#0a0a0a] text-white py-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+
+
+
+            <div class="space-y-24">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="reveal-up">
+                        <h3 class="text-4xl font-bold uppercase mb-6">Process</h3>
+                        <p class="text-zinc-400 text-lg">Conducted UX research to identify user pain points. Created
+                            wireframes and prototypes for smooth navigation.</p>
+                    </div>
+                    <div class="overflow-hidden aspect-square reveal-img">
+                        <img src="assets/images/service1-1.webp"
+                            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                            alt="Process">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="overflow-hidden aspect-[4/3] reveal-img">
+                        <img src="assets/images/service1-2.webp" class="w-full h-full object-cover" alt="Detail 1">
+                    </div>
+                    <div class="overflow-hidden aspect-[4/3] reveal-img">
+                        <img src="assets/images/service1-4.webp" class="w-full h-full object-cover" alt="Detail 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="bg-[#0a0a0a] text-white selection:bg-[#ff9800] selection:text-black">
+
+        <section class="min-h-screen flex flex-col justify-end px-6 pb-20">
+            <div class="max-w-7xl mx-auto w-full">
+                <h1 class="hero-title text-[12vw] font-bold leading-[0.8] uppercase tracking-tighter mb-12">
+                    Modern <br /> <span class="text-zinc-800 outline-text">Portfolio</span>
+                </h1>
+
+                <div class="hero-image-container relative aspect-video overflow-hidden bg-zinc-900">
+                    <img src="assets/images/download.png" class="hero-img w-full h-full object-cover scale-110"
+                        alt="Work Hero">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 px-6 border-y border-zinc-900">
+            <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
+                <div class="meta-item">
+                    <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-4">Client</p>
+                    <h3 class="text-2xl font-bold uppercase">Gregory M Brooks</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-4">Category</p>
+                    <h3 class="text-2xl font-bold uppercase">Web Design</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-4">Year</p>
+                    <h3 class="text-2xl font-bold uppercase">2026</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 mb-4">Status</p>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        <h3 class="text-2xl font-bold uppercase">Live</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-32 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center mb-32">
+                    <div class="process-text">
+                        <h2 class="text-6xl font-bold uppercase mb-8">The Process</h2>
+                        <p class="text-zinc-400 text-xl leading-relaxed">
+                            Conducted UX research to identify user pain points. Created wireframes and prototypes for
+                            smooth navigation. Applied a fresh color palette and modern typography.
+                        </p>
+                    </div>
+                    <div class=" overflow-hidden reveal-image">
+                        <img src="assets/images/service1-2.webp" class="w-full h-full object-cover" alt="Process">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-32 bg-zinc-950 px-6">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-8xl font-bold uppercase tracking-tighter mb-16">Related <span
+                        class="text-zinc-800 outline-text">Work</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="related-card group cursor-pointer">
+                        <div class="aspect-video overflow-hidden mb-6 relative">
+                            <img src="assets/images/service1-2.webp"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                alt="Related">
+                            <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div
+                                    class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center">
+                                    ↗</div>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold uppercase">Creative Portfolio Website</h3>
+                        <p class="text-zinc-500 uppercase text-xs tracking-widest mt-2">Project</p>
+                    </div>
+                    <div class="related-card group cursor-pointer">
+                        <div class="aspect-video overflow-hidden mb-6 relative">
+                            <img src="assets/images/service1-4.webp"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                alt="Related">
+                            <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <div
+                                    class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center">
+                                    ↗</div>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold uppercase">E-Commerce UI/UX Design</h3>
+                        <p class="text-zinc-500 uppercase text-xs tracking-widest mt-2">UI/UX</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Scroll-percentage -->
+    <div class="fixed bottom-10 right-10 z-[300] flex items-center gap-4 pointer-events-none">
+
+
+        <div class="relative w-20 h-20 flex items-center justify-center">
+            <svg class="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                <circle class="text-zinc-800 stroke-current" stroke-width="8" cx="50" cy="50" r="40" fill="transparent">
+                </circle>
+                <circle id="progress-circle" class="text-[#ff9800] stroke-current transition-all duration-150"
+                    stroke-width="5" stroke-linecap="round" cx="50" cy="50" r="40" fill="#000" stroke-dasharray="251.2"
+                    stroke-dashoffset="251.2"></circle>
+            </svg>
+            <span id="scroll-percentage"
+                class="absolute inset-0 flex items-center justify-center text-white font-bold text-sm sync">0%</span>
+        </div>
+    </div>
+
+    <footer id="contact" class="min-h-screen py-32 px-[5%] flex flex-col justify-center items-center text-center">
+        <h2
+            class="text-6xl md:text-[10vw] sync tracking-tighter mb-12 hover:text-[#ff9800] transition-colors cursor-pointer leading-none">
+            Let's<br>Talk.</h2>
+        <div class="grid md:grid-cols-3 gap-12 w-full max-w-5xl mt-20">
+            <div class="reveal">
+                <p class="sync text-[10px] text-zinc-500 mb-4 tracking-widest">Email</p>
+                <p class="text-xl">hello@create.studio</p>
+            </div>
+            <div class="reveal">
+                <p class="sync text-[10px] text-zinc-500 mb-4 tracking-widest">Social</p>
+                <p class="text-xl">Instagram / Twitter / LinkedIn</p>
+            </div>
+            <div class="reveal">
+                <p class="sync text-[10px] text-zinc-500 mb-4 tracking-widest">Location</p>
+                <p class="text-xl">Los Angeles, CA</p>
+            </div>
+        </div>
+        <p class="text-zinc-600 sync text-[10px] tracking-widest mt-32">©2026 Designed for the Future</p>
+    </footer>
+
+    <script src="portfolio.js"></script>
+
+</body>
+
+</html>

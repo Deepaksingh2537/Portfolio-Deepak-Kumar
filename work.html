@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Front-End Engineer Portfolio</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Family -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Css File -->
+    <link rel="styleSheet" href="portfolio.css" type="text/css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+
+    <!-- Standard favicon -->
+    <link rel="icon" href="assets/images/favicon.png" sizes="any">
+
+    <!-- PNG favicons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.png">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon.png">
+
+    <!-- Android / Chrome -->
+    <link rel="manifest" href="assets/images/favicon.png">
+
+    <!-- Windows tiles -->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/images/favicon.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+</head>
+
+<body>
+
+    <div id="scroll-progress-container">
+        <div id="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Mouse Cursor -->
+    <div id="cursor" class="hidden md:block"></div>
+
+
+    <div id="menu-overlay">
+        <div class="flex flex-col text-right gap-4">
+            <a href="#hero" class="menu-link" onclick="toggleMenu()">HOME</a>
+            <a href="about.html" class="menu-link" onclick="toggleMenu()">About</a>
+            <a href="work.html" class="menu-link" onclick="toggleMenu()">WORK</a>
+            <a href="contact.html" class="menu-link" onclick="toggleMenu()">CONTACT</a>
+        </div>
+    </div>
+
+    <nav id="main-nav"
+        class="fixed top-0 left-1/2 -translate-x-1/2 bg-[#000] w-full  z-[250] p-6 md:py-4 md:px-16 flex justify-between items-center transition-colors duration-500">
+        <a href="home.html" class="sync text-xl font-bold text-[#ff9800] tracking-tighter">
+            <img src="assets/images/Logo.png" width="120px" height="120px">
+        </a>
+
+        <button onclick="toggleMenu()" class="flex flex-col items-end gap-1.5 group p-2">
+            <div id="line1" class="w-12 h-[2px] bg-white transition-all duration-300"></div>
+            <div id="line2" class="w-8 h-[2px] bg-white transition-all duration-300 group-hover:w-8"></div>
+        </button>
+    </nav>
+
+    <section class="bg-[#0a0a0a] pt-16 md:py-24 px-6">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="work-header py-12">
+                <div class="overflow-hidden">
+                    <p class="work-subtext text-[#ff9800] uppercase tracking-[0.4em] text-xs font-black mb-6">
+                        My Portfolio
+                    </p>
+                </div>
+
+                <h2 class="text-[12vw] md:text-[8vw] font-bold leading-[0.85] tracking-tighter uppercase">
+                    <div class="overflow-hidden">
+                        <span class="work-title-line block">
+                            Featured <span class="text-zinc-800 outline-text">Projects</span>
+                        </span>
+                    </div>
+
+                    <div class="overflow-hidden">
+                        <span class="work-title-line block italic font-light text-zinc-300">
+                            Collection.
+                        </span>
+                    </div>
+                </h2>
+
+                <p class="mt-8 max-w-2xl text-zinc-400 text-lg leading-relaxed">
+                    A showcase of responsive websites and modern web applications built using
+                    React.js, Next.js, JavaScript, Tailwind CSS, Bootstrap, and modern UI/UX principles.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-showcase" class="bg-[#0a0a0a] text-white md:py-12 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="text-center mb-16 overflow-hidden">
+                <h2 class="hero-title text-[8vw] md:text-[5vw] font-bold leading-none tracking-tighter uppercase mb-6">
+                    MODERN <span class="text-zinc-800 outline-text">Yoga & Massage</span> WEBSITE
+                </h2>
+                <p class="max-w-6xl mx-auto text-zinc-500 text-sm md:text-base leading-relaxed">
+                    MODERN Yoga & Massage offers personalized yoga classes, therapeutic massage treatments, mindfulness
+                    sessions, and wellness programs designed to promote overall health and inner balance. With
+                    experienced practitioners and a client-centered approach, the studio provides a peaceful environment
+                    where individuals can rejuvenate their body, calm their mind, and restore their natural energy.
+                    Services include yoga instruction, deep tissue massage, relaxation therapies, meditation,
+                    breathwork, and holistic wellness consultations.
+                </p>
+            </div>
+
+            <div class="project-image-container relative w-full aspect-video overflow-hidden mb-16 ">
+                <a href="https://coreatelierpilates.com/" target="_blank">
+                    <img src="assets/images/work-1.png"
+                        class="main-img w-full h-full object-contain grayscale-0 scale-100" alt="Project Hero">
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 border-y border-zinc-800 py-10 mb-20">
+                <div class="metadata-item px-4 border-r border-zinc-800">
+                    <p class="text-[14px] uppercase tracking-widest text-zinc-200 mb-2">Year</p>
+                    <h4 class="text-1xl font-bold">2025</h4>
+                </div>
+                <div class="metadata-item px-4 border-r border-zinc-800">
+                    <p class="text-[14px] uppercase tracking-widest text-zinc-200 mb-2">Client</p>
+                    <h4 class="text-1xl font-bold uppercase">Core Atelier Pilates</h4>
+                </div>
+                <div class="metadata-item px-4 border-r border-zinc-800">
+                    <p class="text-[14px] uppercase tracking-widest text-zinc-200 mb-2">Category</p>
+                    <h4 class="text-1xl font-bold uppercase">Luxury Pilates Studio / Health & Wellness / Fitness</h4>
+                </div>
+                <div class="metadata-item px-4">
+                    <p class="text-[14px] uppercase tracking-widest text-zinc-200 mb-2">Budget</p>
+                    <h4 class="text-1xl font-bold uppercase">Estimated: $3,000 – $10,000 USD</h4>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-8 space-y-12">
+                    <div class="content-block">
+                        <h3 class="text-xl font-bold uppercase tracking-widest mb-6">Research</h3>
+                        <p class="text-zinc-300 text-lg leading-relaxed">
+                            <b> The project appears focused on creating a:</b>
+
+                            Premium wellness brand identity
+                            Luxury boutique Pilates experience
+                            Small-group class positioning
+                            Modern minimal UI/UX
+                            Mobile-first booking experience
+                            Trust-building through testimonials and instructor credentials
+
+                            The website emphasizes:
+
+                            Personalized Pilates sessions
+                            Elegant visual storytelling
+                            High-end fitness branding
+                            Smooth booking and inquiry flow
+                        </p>
+                    </div>
+                    <div class="content-block">
+                        <h3 class="text-xl font-bold uppercase tracking-widest mb-6 text-[#ff9800]">Challenge</h3>
+                        <p class="text-zinc-300 text-lg leading-relaxed">
+                            <b>Key challenges likely included:</b>
+
+                            Creating a luxury wellness aesthetic without clutter
+                            Making the Pilates studio feel premium and calming
+                            Designing a smooth class booking experience
+                            Balancing strong visuals with fast performance
+                            Showcasing instructor expertise professionally
+                            Building trust for first-time Pilates clients
+                        </p>
+                    </div>
+
+                    <div class="content-block">
+                        <h3 class="text-xl font-bold uppercase tracking-widest mb-6 text-[#ff9800]">Technology (Likely
+                            Stack)</h3>
+                        <p class="text-zinc-300 text-lg leading-relaxed">
+                            React / Next.js
+                            Tailwind CSS
+                            JavaScript / TypeScript
+                            Responsive design
+                            CMS integration
+                            Animation libraries
+                        </p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-4 flex flex-col gap-6">
+                    <div class="bg-black p-8 rounded-3xl border border-zinc-800">
+                        <p class="text-xs uppercase tracking-widest text-zinc-500 mb-4">Availability</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]">
+                            </div>
+                            <h4 class="text-lg font-bold uppercase">AVAILABLE NOW</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-showcase" class="bg-[#0a0a0a] text-white py-12 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="text-center mb-16 overflow-hidden">
+                <h2 class="hero-title text-[8vw] md:text-[5vw] font-bold leading-none tracking-tighter uppercase mb-6">
+                    MODERN <span class="text-zinc-800 outline-text">Travel</span> WEBSITE
+                </h2>
+                <p class="max-w-6xl mx-auto text-zinc-500 text-sm md:text-base leading-relaxed">
+                    MODERN Travel offers comprehensive travel solutions for leisure travelers, families, groups, and
+                    businesses. From luxury vacations and honeymoon packages to adventure tours and corporate travel
+                    arrangements, the company provides tailored travel experiences designed around each client's
+                    preferences and budget. With expert travel consultants, 24/7 support, and carefully curated travel
+                    packages, MODERN Travel ensures every journey is smooth, enjoyable, and stress-free.
+                </p>
+            </div>
+
+            <div class="project-image-container relative w-full aspect-video overflow-hidden mb-16 ">
+                <a href="https://www.bluemoreyachting.com/" target="_blank">
+                    <img src="assets/images/work-8.png"
+                        class="main-img w-full h-full object-contain grayscale-0 scale-100" alt="Project Hero">
+                </a>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 border-y border-zinc-800 py-10 mb-20">
+                <div class="metadata-item px-4 border-r border-zinc-800">
+                    <p class="text-[14px] uppercase tracking-widest text-zinc-200 mb-2">Year</p>
+                    <h4 class="text-1xl font-bold">2024</h4>
+                </div>
+                <div class="metadata-item px-4 border-r border-zinc-800">
+                    <p class="text-[14px] uppercase tracking-widest text-zinc-200 mb-2">Client</p>
+                    <h4 class="text-1xl font-bold uppercase">Blue More Yachting</h4>
+                </div>
+                <div class="metadata-item px-4 border-r border-zinc-800">
+                    <p class="text-[14px] uppercase tracking-widest text-zinc-200 mb-2">Category</p>
+                    <h4 class="text-1xl font-bold uppercase">Travel & Tourism</h4>
+                </div>
+                <div class="metadata-item px-4">
+                    <p class="text-[14px] uppercase tracking-widest text-zinc-200 mb-2">Industry</p>
+                    <h4 class="text-1xl font-bold uppercase">Yachting / Luxury Travel</h4>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-8 space-y-12">
+                    <div class="content-block">
+                        <h3 class="text-xl font-bold uppercase tracking-widest mb-6">Business Description</h3>
+                        <p class="text-zinc-300 text-lg leading-relaxed">
+
+                            Blue More Yachting is a luxury yacht charter company specializing in private yacht and gulet
+                            charters across Turkey, Greece, and Croatia. The company offers customized yacht vacations,
+                            concierge services, gourmet experiences, route planning, and premium crewed yacht journeys
+                            in the Mediterranean.
+                        </p>
+                    </div>
+
+
+                    <div class="content-block">
+                        <h3 class="text-xl font-bold uppercase tracking-widest mb-6 text-[#ff9800]">Technology (Likely
+                            Stack)</h3>
+                        <p class="text-zinc-300 text-lg leading-relaxed">
+                            HTML5|
+                            CSS3 |
+                            JavaScript (ES6+) |
+                            React.js or Next.js |
+                            TypeScript |
+                            Tailwind CSS |
+                            CMS Integration |
+                            Dynamic Search & Filtering |
+                            REST APIs |
+                            SEO Optimization |
+                            Responsive Design |
+                            Contact & Booking Forms |
+                            Image Optimization |
+                            Cloud Hosting (Vercel/AWS/Cloudflare)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-4 flex flex-col gap-6">
+                    <div class="bg-black p-8 rounded-3xl border border-zinc-800">
+                        <p class="text-xs uppercase tracking-widest text-zinc-500 mb-4">Availability</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]">
+                            </div>
+                            <h4 class="text-lg font-bold uppercase">AVAILABLE NOW</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-detail" class="bg-[#0a0a0a] text-white py-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="space-y-24">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div class="reveal-up">
+                        <h3 class="text-1xl font-bold uppercase mb-6 text-justify ">Project Details — Sport Fleiss
+                            E-Commerce</h3>
+                        <p class="text-zinc-300 text-lg">Sport Fleiss is a premium Austrian sports retail and ski rental
+                            e-commerce platform designed to deliver a modern alpine shopping experience. The project
+                            focused on combining online sports retail, ski equipment rentals, and multilingual user
+                            experience into one seamless digital platform. The website features luxury outdoor branding,
+                            responsive layouts, streamlined navigation, and high-quality product presentation for ski
+                            and fashion collections. Key challenges included integrating booking functionality with
+                            e-commerce, optimizing performance for image-heavy pages, and maintaining a clean UI across
+                            devices. The platform was likely built using modern technologies such as React/Next.js,
+                            JavaScript, Tailwind CSS, and advanced e-commerce integrations.
+                        </p>
+                    </div>
+
+                    <div class="overflow-hidden aspect-square reveal-img">
+                        <a href="https://shop.sport-fleiss.at/" target="_blank">
+                            <img src="assets/images/work-2.png"
+                                class="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-700"
+                                alt="Process">
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 border-y border-zinc-800 py-10 mb-20">
+                    <div class="metadata-item px-4 border-r border-zinc-800">
+                        <p class="text-[14px] uppercase tracking-widest text-zinc-200 mb-2">Year</p>
+                        <h4 class="text-1xl font-bold">2025–2026</h4>
+                    </div>
+                    <div class="metadata-item px-4 border-r border-zinc-800">
+                        <p class="text-[14px] uppercase tracking-widest text-zinc-200 mb-2">Client</p>
+                        <h4 class="text-1xl font-bold uppercase">SPORT-FLEISS GmbH</h4>
+                    </div>
+                    <div class="metadata-item px-4 border-r border-zinc-800">
+                        <p class="text-[14px] uppercase tracking-widest text-zinc-200 mb-2">Category</p>
+                        <h4 class="text-1xl font-bold uppercase">Sports Retail / Ski Equipment / Fashion E-Commerce /
+                            Rental Booking Platform
+                        </h4>
+                    </div>
+                    <div class="metadata-item px-4">
+                        <p class="text-[14px] uppercase tracking-widest text-zinc-200 mb-2">Budget</p>
+                        <h4 class="text-1xl font-bold uppercase">Estimated: $8,000 – $25,000 USD</h4>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="overflow-hidden aspect-[4/3] reveal-img">
+                        <img src="assets/images/service-1.png" class="w-full h-full object-contain" alt="Detail 1">
+                    </div>
+
+                    <div class="overflow-hidden aspect-[4/3] reveal-img">
+                        <img src="assets/images/service-2.png" class="w-full h-full object-contain" alt="Detail 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="bg-[#0a0a0a] text-white selection:bg-[#ff9800] selection:text-black">
+
+        <section class="min-h-screen flex flex-col justify-end px-6 pb-20">
+            <div class="max-w-7xl mx-auto w-full">
+                <h1
+                    class="hero-title justify-center text-[5vw] flex font-bold leading-[0.8] uppercase tracking-tighter mb-12">
+                    Modern <br /> <span class="text-zinc-800 outline-text">House Wine </span>
+                </h1>
+
+                <div class="hero-image-container relative overflow-hidden">
+
+                    <a href="https://housewine.nl/" target="_blank" class="block w-full h-full">
+                        <img src="assets/images/work-3.png" class="hero-img w-full h-full object-contain scale-100"
+                            alt="Work Hero">
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="py-20 px-6 border-y border-zinc-900">
+            <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Client</p>
+                    <h3 class="text-1xl font-bold uppercase">House Wine</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Client Category</p>
+                    <h3 class="text-1xl font-bold uppercase">Wine E-Commerce / Beverage Retail / Luxury Wine Store</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Year</p>
+                    <h3 class="text-1xl font-bold uppercase">2025–2026</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Status</p>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        <h3 class="text-1xl font-bold uppercase">Completed / Live Project</h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 w-full max-w-[1280px] mx-auto py-10">
+                <div class="md:col-span-8 space-y-12">
+                    <div class="content-block">
+                        <h3 class="text-xl font-bold uppercase tracking-widest mb-6">Research</h3>
+                        <p class="text-zinc-300 text-lg leading-relaxed">
+                            The project focused on creating a premium online wine-shopping experience with elegant
+                            branding and smooth e-commerce functionality. Research likely included analyzing luxury
+                            beverage websites, improving customer trust, optimizing product discovery, and designing a
+                            mobile-friendly shopping journey. The platform emphasizes sophisticated visuals, curated
+                            wine collections, and easy online purchasing for modern consumers.
+                        </p>
+                    </div>
+                    <div class="content-block">
+                        <h3 class="text-xl font-bold uppercase tracking-widest mb-6 text-[#ff9800]">Challenge</h3>
+                        <p class="text-zinc-300 text-lg leading-relaxed">
+                            Creating a luxury and elegant brand experience
+                            Organizing large wine collections clearly
+                            Building trust for online beverage purchases
+                            Optimizing mobile shopping performance
+                            Maintaining fast loading speeds with high-quality visuals
+                            Designing a clean checkout and product browsing flow
+                            Balancing premium aesthetics with usability
+                        </p>
+                    </div>
+
+                    <div class="content-block">
+                        <h3 class="text-xl font-bold uppercase tracking-widest mb-6 text-[#ff9800]">Technology (Likely
+                            Stack)</h3>
+                        <p class="text-zinc-300 text-lg leading-relaxed">
+                            React.js / Next.js Tailwind CSS JavaScript / TypeScript Responsive design CMS integration
+                            Animation libraries
+                        </p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-4 flex flex-col gap-6">
+                    <div class="bg-black p-8 rounded-3xl border border-zinc-800">
+                        <p class="text-xs uppercase tracking-widest text-zinc-500 mb-4">Availability</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]">
+                            </div>
+                            <h4 class="text-lg font-bold uppercase">AVAILABLE NOW</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section class="min-h-screen flex flex-col justify-end px-6 py-20">
+            <div class="max-w-7xl mx-auto w-full">
+                <h2 class="hero-title text-[8vw] md:text-[5vw] font-bold leading-none tracking-tighter uppercase mb-6">
+                    MODERN <span class="text-zinc-800 outline-text">Real Estate & </span> Property
+                </h2>
+
+                <div class="hero-image-container relative overflow-hidden">
+
+                    <a href="https://www.verityandcohomes.com/" target="_blank" class="block w-full h-full">
+                        <img src="assets/images/work-4.png" class="hero-img w-full h-full object-contain scale-100"
+                            alt="Work Hero">
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="py-20 px-6 border-y border-zinc-900">
+            <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Client</p>
+                    <h3 class="text-1xl font-bold uppercase">Verity & Co Homes</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Client Category</p>
+                    <h3 class="text-1xl font-bold uppercase">Real Estate / Home Construction / Residential Property
+                        Development</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Year</p>
+                    <h3 class="text-1xl font-bold uppercase">2025–2026</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Status</p>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        <h3 class="text-1xl font-bold uppercase">Live / Completed Project</h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 w-full max-w-[1280px] mx-auto py-10">
+                <div class="md:col-span-8 space-y-12">
+                    <div class="content-block">
+                        <h3 class="text-xl font-bold uppercase tracking-widest mb-6">Main Business</h3>
+                        <p class="text-zinc-300 text-lg leading-relaxed">
+                            Luxury residential home building and property development focused on family homes and
+                            premium housing communities.
+                        </p>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+        <section class="min-h-screen flex flex-col justify-end px-6 pb-20">
+            <div class="max-w-7xl mx-auto w-full">
+
+                <div class="hero-image-container relative overflow-hidden">
+
+                    <a href="https://www.coffee-tech.com/" target="_blank" class="block w-full h-full">
+                        <img src="assets/images/work-5.png" class="hero-img w-full h-full object-contain scale-100"
+                            alt="Work Hero">
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="py-20 px-6 border-y border-zinc-900">
+            <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Client</p>
+                    <h3 class="text-1xl font-bold uppercase">Coffee House Ltd</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Client Category</p>
+                    <h3 class="text-1xl font-bold uppercase">Coffee Equipment</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Year</p>
+                    <h3 class="text-1xl font-bold uppercase">2024</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Status</p>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        <h3 class="text-1xl font-bold uppercase">Completed</h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 w-full max-w-[1280px] mx-auto py-10">
+                <div class="md:col-span-8 space-y-12">
+                    <div class="content-block">
+                        <h3 class="text-xl font-bold uppercase tracking-widest mb-6">Main Business</h3>
+                        <p class="text-zinc-300 text-lg leading-relaxed">
+                            Coffee Processing & Roasting Equipment Manufacturing
+                        </p>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <section class="min-h-screen flex flex-col justify-end px-6 pb-20">
+            <div class="max-w-7xl mx-auto w-full">
+
+                <div class="hero-image-container relative overflow-hidden">
+
+                    <a href="https://www.oneflare.com.au/" target="_blank" class="block w-full h-full">
+                        <img src="assets/images/work-6.png" class="hero-img w-full h-full object-contain scale-100"
+                            alt="Work Hero">
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="py-20 px-6 border-y border-zinc-900">
+            <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Client</p>
+                    <h3 class="text-1xl font-bold uppercase">Oneflare</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Client Category</p>
+                    <h3 class="text-1xl font-bold uppercase">Online Market place</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Year</p>
+                    <h3 class="text-1xl font-bold uppercase">2024</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Status</p>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        <h3 class="text-1xl font-bold uppercase">Active</h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 w-full max-w-[1280px] mx-auto py-10">
+                <div class="md:col-span-8 space-y-12">
+                    <div class="content-block">
+                        <h3 class="text-xl font-bold uppercase tracking-widest mb-6">Main Business</h3>
+                        <p class="text-zinc-300 text-lg leading-relaxed">
+                            Oneflare is an Australian digital marketplace that connects customers with local service
+                            providers such as plumbers, electricians, cleaners, photographers, accountants, removalists,
+                            web designers, and other professionals. Customers post jobs and receive quotes from
+                            qualified businesses.
+                        </p>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+        <section class="min-h-screen flex flex-col justify-end px-6 pb-20">
+            <div class="max-w-7xl mx-auto w-full">
+
+                <div class="hero-image-container relative overflow-hidden">
+
+                    <a href="https://beyreuther.com/" target="_blank" class="block w-full h-full">
+                        <img src="assets/images/work-7.png" class="hero-img w-full h-full object-contain scale-100"
+                            alt="Work Hero">
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section class="py-20 px-6 border-y border-zinc-900">
+            <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Client</p>
+                    <h3 class="text-1xl font-bold uppercase">Beyreuther Training</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Client Category</p>
+                    <h3 class="text-1xl font-bold uppercase">Education & Training</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Year</p>
+                    <h3 class="text-1xl font-bold uppercase">2024</h3>
+                </div>
+                <div class="meta-item">
+                    <p class="text-[14px] uppercase tracking-[0.3em] text-zinc-200 mb-4">Status</p>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                        <h3 class="text-1xl font-bold uppercase">Active</h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 w-full max-w-[1280px] mx-auto py-10">
+                <div class="md:col-span-8 space-y-12">
+                    <div class="content-block">
+                        <h3 class="text-xl font-bold uppercase tracking-widest mb-6">Main Business</h3>
+                        <p class="text-zinc-300 text-lg leading-relaxed">
+                            Beyreuther Training is a German sales training and consulting company founded by Carsten
+                            Beyreuther. The company provides sales training, negotiation training, objection-handling
+                            techniques, cold-calling training, sales process optimization, and coaching programs for
+                            sales professionals, entrepreneurs, and businesses. It offers online academies, workshops,
+                            and government-supported training programs in Germany.
+                        </p>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+        <section class="py-32 bg-zinc-950 px-6">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-6xl md:text-8xl font-bold uppercase tracking-tighter mb-16">GSAP & MOTION <span
+                        class="text-zinc-800 outline-text">Work</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="related-card group">
+                        <div class="aspect-video overflow-hidden mb-6 relative">
+                            <img src="assets/images/work-9.png"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                alt="Related">
+                            <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <a href="https://eatnaked.co/" target="_blank" class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center
+          transition-all duration-300 hover:bg-[#ff9800] hover:text-white hover:scale-110">
+                                    ↗
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="text-1xl font-bold uppercase">Healthy Meal Preparation & Delivery</h3>
+                        <p class="text-zinc-500 uppercase text-xs tracking-widest mt-2">Food Industry</p>
+                    </div>
+                    <div class="related-card group cursor-pointer">
+                        <div class="aspect-video overflow-hidden mb-6 relative">
+                            <img src="assets/images/work-10.png"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                alt="Related">
+                            <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <a href="https://tribestays.com/student-hostel" target="_blank" class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center
+          transition-all duration-300 hover:bg-[#ff9800] hover:text-white hover:scale-110">
+                                    ↗
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="text-1xl font-bold uppercase">Luxury Student Hostels & Co-Living Spaces</h3>
+                        <p class="text-zinc-500 uppercase text-xs tracking-widest mt-2">Student Industry</p>
+                    </div>
+
+                    <div class="related-card group cursor-pointer">
+                        <div class="aspect-video overflow-hidden mb-6 relative">
+                            <img src="assets/images/work-11.png"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                alt="Related">
+                            <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <a href="https://5.cultish.com/" target="_blank" class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center
+          transition-all duration-300 hover:bg-[#ff9800] hover:text-white hover:scale-110">
+                                    ↗
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="text-1xl font-bold uppercase">Premium Streetwear & Clothing Brand</h3>
+                        <p class="text-zinc-500 uppercase text-xs tracking-widest mt-2">Fashion & Apparel Industry</p>
+                    </div>
+
+                    <div class="related-card group cursor-pointer">
+                        <div class="aspect-video overflow-hidden mb-6 relative">
+                            <img src="assets/images/work-12.png"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                alt="Related">
+                            <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <a href="https://www.ofskinandsouls.com/fr" target="_blank" class="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center
+          transition-all duration-300 hover:bg-[#ff9800] hover:text-white hover:scale-110">
+                                    ↗
+                                </a>
+                            </div>
+                        </div>
+                        <h3 class="text-1xl font-bold uppercase">Luxury Skincare & Wellness Products</h3>
+                        <p class="text-zinc-500 uppercase text-xs tracking-widest mt-2">Beauty & Skincare Industry</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- Scroll-percentage -->
+    <div class="fixed bottom-10 right-10 z-[300] flex items-center gap-4 pointer-events-none">
+
+
+        <div class="relative w-20 h-20 flex items-center justify-center">
+            <svg class="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                <circle class="text-zinc-800 stroke-current" stroke-width="8" cx="50" cy="50" r="40" fill="transparent">
+                </circle>
+                <circle id="progress-circle" class="text-[#ff9800] stroke-current transition-all duration-150"
+                    stroke-width="5" stroke-linecap="round" cx="50" cy="50" r="40" fill="#000" stroke-dasharray="251.2"
+                    stroke-dashoffset="251.2"></circle>
+            </svg>
+            <span id="scroll-percentage"
+                class="absolute inset-0 flex items-center justify-center text-white font-bold text-sm sync">0%</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact" class="min-h-screen py-32 px-[5%] flex flex-col justify-center items-center text-center">
+        <h2
+            class="text-6xl md:text-[10vw] sync tracking-tighter mb-12 hover:text-[#ff9800] transition-colors cursor-pointer leading-none">
+            Let's<br>Talk.</h2>
+        <div class="grid md:grid-cols-3 gap-12 w-full max-w-5xl mt-20">
+            <div class="reveal">
+                <p class="sync text-[10px] text-zinc-500 mb-4 tracking-widest">Email</p>
+                <p class="text-xl">
+                    <a href="mailto:kumar.deepak201199@gmail.com"
+                        class="hover:text-[#ff9800] transition-colors duration-300">
+                        kumar.deepak201199@gmail.com
+                    </a>
+                </p>
+            </div>
+            <div class="reveal">
+                <p class="sync text-[10px] text-zinc-500 mb-4 tracking-widest">Social</p>
+                <a href="https://www.linkedin.com/in/deepak-kumar-bb49a0240/" target="_blank" rel="noopener noreferrer"
+                    class="text-xl hover:text-[#ff9800] transition-colors duration-300"> LinkedIn</a>
+            </div>
+            <div class="reveal">
+                <div>
+                    <p class="sync text-[10px] text-zinc-500 mb-4 tracking-widest uppercase">
+                        Location
+                    </p>
+                    <a href="https://maps.google.com/?q=Sector+35-B,+Chandigarh,+India" target="_blank"
+                        rel="noopener noreferrer" class="text-xl hover:text-[#ff9800] transition-colors duration-300">
+                        Sector 35-B, Chandigarh, India
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p class="text-zinc-600 sync text-[10px] tracking-widest mt-32">
+            © 2026 Designed & Developed by Deepak Kumar. All Rights Reserved.
+        </p>
+    </footer>
+
+    <script src="portfolio.js"></script>
+
+</body>
+
+</html>

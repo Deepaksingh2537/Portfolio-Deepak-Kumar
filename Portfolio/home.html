@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Front-End Engineer Portfolio</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Family -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Css File -->
+    <link rel="styleSheet" href="portfolio.css" type="text/css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+
+    <!-- Standard favicon -->
+    <link rel="icon" href="assets/images/favicon.png" sizes="any">
+
+    <!-- PNG favicons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.png">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon.png">
+
+    <!-- Android / Chrome -->
+    <link rel="manifest" href="assets/images/favicon.png">
+
+    <!-- Windows tiles -->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/images/favicon.png">
+    <meta name="theme-color" content="#ffffff">
+
+</head>
+
+<body>
+
+    <div id="loader" class="fixed inset-0 z-[1000] bg-black flex items-center justify-center">
+        <div class="text-center">
+            <div id="loader-bar" class="w-[800px] h-[1px] bg-zinc-800 mb-4 overflow-hidden">
+                <div id="loader-fill" class="w-0 h-full bg-[#ff9800]"></div>
+            </div>
+            <div class="sync flex justify-center items-center">
+                <video autoplay loop muted playsinline style="width:500px;height:500px;display:block;margin:auto;">
+                    <source src="assets/video/loader.mp4" type="video/mp4">
+                </video>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Scroll -->
+    <div id="scroll-progress-container">
+        <div id="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Mouse Cursor -->
+    <div id="cursor" class="hidden md:block"></div>
+
+    <!-- Menu  -->
+    <div id="menu-overlay">
+        <div class="flex flex-col text-right gap-4">
+            <a href="#hero" class="menu-link" onclick="toggleMenu()">HOME</a>
+            <a href="about.html" class="menu-link" onclick="toggleMenu()">About</a>
+            <a href="work.html" class="menu-link" onclick="toggleMenu()">WORK</a>
+            <a href="contact.html" class="menu-link" onclick="toggleMenu()">CONTACT</a>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav id="main-nav"
+        class="fixed top-0 left-1/2 -translate-x-1/2 bg-[#000] w-full  z-[250] p-6 md:py-4 md:px-16 flex justify-between items-center transition-colors duration-500">
+        <span class="sync text-xl font-bold text-[#ff9800] tracking-tighter">
+            <img src="assets/images/Logo.png" width="120px" height="120px">
+        </span>
+
+        <button onclick="toggleMenu()" class="flex flex-col items-end gap-1.5 group p-2">
+            <div id="line1" class="w-12 h-[2px] bg-white transition-all duration-300"></div>
+            <div id="line2" class="w-8 h-[2px] bg-white transition-all duration-300 group-hover:w-8"></div>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero"
+        class="relative min-h-screen flex items-center justify-center px-[5%] py-10 md:py-20 overflow-hidden bg-black">
+        <canvas id="three-canvas" class="absolute inset-0 z-0 pointer-events-none opacity-40"></canvas>
+        <div class="relative  w-full grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+            <div class="md:col-span-8 self-start pt-12">
+                <p id="animated-text"
+                    class="text-3xl md:text-5xl font-medium mb-4 text-white leading-[1.1] reveal max-w-xl">
+                    <span class="line">
+                        <span class="word">Digital</span>
+                        <span class="word">experiences</span>
+                        <span class="word">that</span>
+                    </span>
+                    <span class="line text-white/80">
+                        <span class="word">connect,</span>
+                        <span class="word">scale</span>
+                        <span class="word">and</span>
+                        <span class="word">perform.</span>
+                    </span>
+                </p>
+            </div>
+
+            <div class="md:col-span-4 flex flex-col items-end self-start md:pt-12">
+                <div class="flex items-start">
+                    <span id="hero-counter" class="text-4xl sync font-bold text-[#ff9800] leading-none">0</span>
+                    <span class="text-4xl sync font-bold text-[#ff9800] leading-none">+</span>
+                </div>
+                <p class="anim-text text-[9px] uppercase tracking-[0.2em] text-white/60 text-right mt-2">
+                    Quietly making noise for <br> brands worldwide
+                </p>
+            </div>
+
+            <div class="md:col-span-12 py-12">
+                <h1 id="hero-title" class="text-[14vw] md:text-[14vw] sync leading-[0.8] tracking-tighter text-center">
+                    <span class="word-create"></span><span class="word-studio"></span><span class="cursor"></span>
+                </h1>
+            </div>
+
+            <div class="md:col-span-6 flex flex-col gap-6 reveal md:pt-0 pt-[150px]">
+                <div class="text-[10px] md:text-[16px] font-bold   text-white md:text-white/70 md:leading-relaxed">
+                    A design studio trusted by startups and <br> leading brands. <br>
+                    We create stories people remember.
+                </div>
+
+                <div class="flex gap-4">
+                    <a href="#work"
+                        class="px-8 py-3 hover:bg-[#ff9800] hover:text-white sync text-[14px] bg-white text-black transition-all inline-block text-center cursor-pointer">
+                        SEE WORK →
+                    </a>
+
+                    <a href="https://wa.me/YOURNUMBER?text=Hello! I'm interested in working with you." target="_blank"
+                        class="px-8 py-3 border border-white/20 text-white sync text-[14px] hover:bg-white hover:text-black transition-all inline-block text-center cursor-pointer">
+                        LET'S CHAT →
+                    </a>
+                </div>
+            </div>
+
+            <div class="md:col-span-6 flex justify-end items-end relative z-20">
+                <div
+                    class="w-full max-w-[400px] p-5 bg-black border border-white/10 rounded-[2rem] group cursor-pointer transition-transform hover:scale-[1.02] relative z-10 shadow-2xl">
+
+                    <div class="flex justify-between items-center px-2 mb-4">
+                        <div class="flex flex-col gap-1">
+                            <span class="text-[8px] sync tracking-[0.3em] text-[#ff9800] font-bold">FEATURED</span>
+                            <span class="text-[10px] sync text-white/40">SHOWREEL \\ 2026</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#ff9800] animate-pulse"></span>
+                            <span class="text-[8px] sync text-white/60 uppercase">Live</span>
+                        </div>
+                    </div>
+
+                    <div
+                        class="aspect-video bg-zinc-950 rounded-[1.5rem] relative overflow-hidden flex items-center justify-center border border-white/5">
+
+                        <video autoplay muted loop playsinline preload="auto"
+                            class="absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-out group-hover:scale-110">
+                            <source src="assets/video/EMG1uWJ1gG9zYgmlMKDIISuQ5EU.mp4" type="video/mp4">
+                        </video>
+
+                    </div>
+
+                    <div class="mt-4 px-2 flex justify-between items-end">
+                        <p class="text-[11px] sync text-white font-bold leading-tight">
+                            MOTION GRAPHICS<br>
+                            <span class="text-white/40 font-medium">& DIRECTION</span>
+                        </p>
+                        <span class="text-[9px] sync text-white/20">0:45 SEC</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+                <img src="assets/images/download.png" alt="" class="w-[300px] h-[300px] md:w-[800px] md:h-[800px]
+                           object-cover opacity-80 mix-blend-lighten">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="relative min-h-screen flex items-center overflow-hidden bg-white px-[5%] py-20">
+        <canvas id="particle-canvas" class="absolute inset-0 z-0 pointer-events-none"></canvas>
+
+        <div
+            class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center w-full max-w-[1400px] mx-auto">
+
+            <div class="about-content space-y-10">
+                <div class="overflow-hidden">
+                    <h2 class="reveal-text text-6xl md:text-[5.5vw] font-light leading-[1.1] tracking-tighter">
+                        <span class="inline-block text-black  py-1 font-bold">Know</span> About <br />
+                        <span class="text-zinc-400 font-extralight ">Deepak Kumar</span>
+                    </h2>
+                </div>
+
+                <div class="space-y-6 max-w-lg text-zinc-600">
+                    <p class="about-p text-lg leading-relaxed">
+                        Deepak is a fast-growing startup that stands out for its
+                        <span class="text-black font-medium">speed, accuracy, and quality.</span>
+                        We believe in adopting new technologies that help us deliver even better results.
+                    </p>
+                    <p class="about-p text-lg leading-relaxed border-l-2 border-[#ff9800] pl-6 italic">
+                        "A successful business is built on happy customers and a committed team that consistently works
+                        towards these values."
+                    </p>
+                </div>
+
+                <div class="about-footer flex items-center gap-4 pt-8">
+                    <div
+                        class="logo-circle w-14 h-14 rounded-full bg-black flex items-center justify-center text-white text-1xl font-bold">
+                        D</div>
+                    <div>
+                        <p class="font-bold text-black uppercase tracking-widest text-xs">Passionately Creating</p>
+                        <p class="text-zinc-500 text-sm">Web & Mobile Applications</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-visual relative">
+
+                <div
+                    class="main-card relative z-10 w-full aspect-[4/5] max-w-[550px] mx-auto rounded-[20px] overflow-hidden  bg-zinc-100">
+                    <img src="assets/images/about.jpg"
+                        class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                        alt="Team">
+
+                    <div
+                        class="absolute bottom-8 left-8 right-8 w-[240px] bg-white/90 backdrop-blur-md rounded-2xl p-3 shadow-xl translate-y-4">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            <p class="text-[10px] uppercase tracking-widest font-bold text-[#ff9800]">Unleashing
+                                Boundless</p>
+                        </div>
+                        <h4 class="text-xl font-bold text-[#2C2C2C]">Creativity & Code</h4>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Our Work Section -->
+    <section id="our-work" class="bg-[#0a0a0a] text-white py-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                <div class="reveal-container">
+                    <p class="text-[#ff9800] uppercase tracking-[0.3em] text-sm font-bold mb-4">Our Project Studies</p>
+                    <h2 class="text-6xl md:text-8xl font-bold tracking-tighter leading-none">
+                        EXPLORING <br /> <span class="text-zinc-500 italic font-light">CREATIVITY.</span>
+                    </h2>
+                </div>
+
+                <a href="work.html"
+                    class="group flex items-center gap-3 bg-[#ff9800] hover:bg-white hover:text-black transition-all duration-500 px-8 py-4 rounded-full font-bold">
+                    See More Projects
+                    <span
+                        class="bg-white text-black rounded-full w-8 h-8 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">→</span>
+                </a>
+            </div>
+
+            <div id="work-carousel" class="work-carousel">
+
+                <div
+                    class="work-card group relative border border-zinc-800 rounded-[2.5rem] p-8 md:p-12 overflow-hidden cursor-pointer">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="flex-1 space-y-6">
+                            <p class="text-zinc-500 font-medium">Software Development</p>
+                            <h3 class="text-4xl md:text-5xl font-bold leading-tight">Mobile Application <br /> Design
+                            </h3>
+                            <p class="text-zinc-400 leading-relaxed max-w-sm">
+                                Crafting intuitive, engaging, and responsive interfaces focused on user experience and
+                                modern visual appeal.
+                            </p>
+                            <div class="flex items-center gap-4 pt-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-[#ff9800] flex items-center justify-center text-black font-bold">
+                                    +</div>
+                                <span class="font-bold group-hover:translate-x-2 transition-transform">Read More</span>
+                            </div>
+                        </div>
+                        <div class="flex-1 overflow-hidden rounded-xl h-96">
+                            <img src="assets/images/app.jpg"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                alt="Work Sample">
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="work-card group relative border border-zinc-800 rounded-[2.5rem] p-8 md:p-12 overflow-hidden cursor-pointer">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="flex-1 space-y-6">
+                            <p class="text-zinc-500 font-medium">UI & UX Development</p>
+                            <h3 class="text-4xl md:text-5xl font-bold leading-tight">UI/UX <br /> Design</h3>
+                            <p class="text-zinc-400 leading-relaxed max-w-sm">
+                                Focuses on creating engaging and user-centered digital experiences that combine seamless
+                                functionality.
+                            </p>
+                            <div class="flex items-center gap-4 pt-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-[#ff9800] flex items-center justify-center text-black font-bold">
+                                    +</div>
+                                <span class="font-bold group-hover:translate-x-2 transition-transform">Read More</span>
+                            </div>
+                        </div>
+                        <div class="flex-1 overflow-hidden rounded-xl h-96">
+                            <img src="assets/images/uiux.png"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                alt="Work Sample">
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="work-card group relative border border-zinc-800 rounded-[2.5rem] p-8 md:p-12 overflow-hidden cursor-pointer">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="flex-1 space-y-6">
+                            <p class="text-zinc-500 font-medium">Web Development</p>
+                            <h3 class="text-4xl md:text-5xl font-bold leading-tight">Web Platform <br /> Revamp</h3>
+                            <p class="text-zinc-400 leading-relaxed max-w-sm">
+                                Web platform revamp modernizes design, improves performance, and enhances user
+                                experience through updated interfaces, optimized navigation, and responsive
+                                functionality across all devices.
+                            </p>
+                            <div class="flex items-center gap-4 pt-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-[#ff9800] flex items-center justify-center text-black font-bold">
+                                    +</div>
+                                <span class="font-bold group-hover:translate-x-2 transition-transform">Read More</span>
+                            </div>
+                        </div>
+                        <div class="flex-1 overflow-hidden rounded-xl h-96">
+                            <img src="assets/images/web.webp"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                alt="Work Sample">
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="work-card group relative border border-zinc-800 rounded-[2.5rem] p-8 md:p-12 overflow-hidden cursor-pointer">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="flex-1 space-y-6">
+                            <p class="text-zinc-500 font-medium">Software Platform</p>
+                            <h3 class="text-4xl md:text-5xl font-bold leading-tight">Business <br /> Analyst</h3>
+                            <p class="text-zinc-400 leading-relaxed max-w-sm">
+                                A Business Analyst bridges business needs and technical solutions by analyzing
+                                processes, gathering requirements, and ensuring project outcomes align with
+                                organizational goals.
+                            <div class="flex items-center gap-4 pt-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-[#ff9800] flex items-center justify-center text-black font-bold">
+                                    +</div>
+                                <span class="font-bold group-hover:translate-x-2 transition-transform">Read More</span>
+                            </div>
+                        </div>
+                        <div class="flex-1 overflow-hidden rounded-xl h-96">
+                            <img src="assets/images/bussiness.webp"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                alt="Work Sample">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="mt-20 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-10 reveal">
+            <div class="max-w-xs">
+                <p class="text-[#ff9800] font-bold mb-2">Our leadership team involved from</p>
+                <p class="text-zinc-500 text-sm italic">first kickoff to final delivery.</p>
+            </div>
+            <div class="text-right">
+                <a href="#"
+                    class="inline-flex items-center gap-4 bg-white text-black px-8 py-3 rounded-full text-xs font-bold hover:bg-[#ff9800] hover:text-white transition-all group">
+                    Follow us on LinkedIn <span class="group-hover:translate-x-2 transition-transform">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Branding Section-->
+    <section id="interactive-services"
+        class="relative min-h-screen bg-[#0a0a0a] text-white flex items-center justify-center overflow-hidden py-16 md:py-24">
+
+        <!-- background dots -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none"
+            style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 30px 30px;"></div>
+
+        <!-- SERVICES TEXT -->
+        <div class="relative z-20 flex flex-col items-center gap-3 md:gap-4 text-center">
+            <div class="service-link group cursor-pointer" data-service="branding">
+                <h2
+                    class="text-[12vw] sm:text-[10vw] md:text-[8vw] font-bold uppercase tracking-tighter opacity-30 transition-opacity group-hover:opacity-100">
+                    Branding
+                </h2>
+            </div>
+
+            <div class="service-link group cursor-pointer" data-service="uiux">
+                <h2
+                    class="text-[12vw] sm:text-[10vw] md:text-[8vw] font-bold uppercase tracking-tighter opacity-30 transition-opacity group-hover:opacity-100">
+                    UI/UX
+                </h2>
+            </div>
+
+            <div class="service-link group cursor-pointer" data-service="framer">
+                <h2
+                    class="text-[12vw] sm:text-[10vw] md:text-[8vw] font-bold uppercase tracking-tighter opacity-30 transition-opacity group-hover:opacity-100">
+                    Framer
+                </h2>
+            </div>
+
+            <div class="service-link group cursor-pointer" data-service="animation">
+                <h2
+                    class="text-[12vw] sm:text-[10vw] md:text-[8vw] font-bold uppercase tracking-tighter opacity-30 transition-opacity group-hover:opacity-100">
+                    Animation
+                </h2>
+            </div>
+        </div>
+
+        <!-- FLOATING IMAGES -->
+        <div id="image-container" class="absolute inset-0 z-10 pointer-events-none">
+
+            <!-- Branding -->
+            <img src="assets/images/service1-1.webp" class="service-imgs branding absolute w-32 sm:w-40 md:w-48 rounded-xl shadow-2xl opacity-0
+               top-[8%] left-[5%] md:top-[15%] md:left-[10%]">
+
+            <img src="assets/images/service1-2.webp" class="service-imgs branding hidden sm:block absolute w-48 md:w-64 rounded-xl shadow-2xl opacity-0
+               top-[10%] right-[15%]">
+
+            <!-- UIUX -->
+            <img src="assets/images/service1-3.webp" class="service-imgs uiux absolute w-36 sm:w-44 md:w-56 rounded-xl shadow-2xl opacity-0
+               bottom-[12%] left-[8%] md:bottom-[20%] md:left-[15%]">
+
+            <img src="assets/images/service1-4.webp" class="service-imgs uiux hidden sm:block absolute w-56 md:w-72 rounded-xl shadow-2xl opacity-0
+               top-[25%] right-[10%]">
+
+            <!-- Framer -->
+            <img src="assets/images/service1-1.webp" class="service-imgs framer absolute w-36 sm:w-44 md:w-60 rounded-xl shadow-2xl opacity-0
+               top-[55%] left-[4%]">
+
+            <img src="assets/images/service1-2.webp" class="service-imgs framer hidden sm:block absolute w-40 md:w-52 rounded-xl shadow-2xl opacity-0
+               bottom-[10%] right-[20%]">
+
+            <!-- Animation -->
+            <img src="assets/images/service1-3.webp" class="service-imgs animation absolute w-40 sm:w-48 md:w-64 rounded-xl shadow-2xl opacity-0
+               bottom-[5%] left-[25%]">
+
+            <img src="assets/images/service1-4.webp" class="service-imgs animation hidden sm:block absolute w-32 md:w-44 rounded-xl shadow-2xl opacity-0
+               top-[5%] left-[45%]">
+        </div>
+    </section>
+
+    <!-- Superpowers Section-->
+    <section class="w-full max-w-[1360px] mx-auto px-6 py-20 md:pt-[60px] md:pb-[120px]">
+
+        <!-- Title -->
+        <h1 class="text-4xl md:text-[100px] font-semibold mb-16">
+            <span class="text-[#ff9800] text-[50px] font-bold"> My </span> Superpowers
+        </h1>
+
+        <!-- Grid -->
+        <div id="skills-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto px-4">
+
+            <div
+                class="skill-card bg-[#111] border border-zinc-800 p-8 rounded-3xl flex flex-col items-center justify-center transition-colors hover:border-[#ff9800] group">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg"
+                    class="h-12 w-auto mb-6 grayscale group-hover:grayscale-0 transition-all">
+                <p class="text-2xl font-bold text-white">98%</p>
+                <p class="text-xs uppercase tracking-widest text-gray-500 mt-1">HTML5</p>
+            </div>
+
+            <div
+                class="skill-card bg-[#111] border border-zinc-800 p-8 rounded-3xl flex flex-col items-center justify-center transition-colors hover:border-[#ff9800] group">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg"
+                    class="h-12 w-auto mb-6 grayscale group-hover:grayscale-0 transition-all">
+                <p class="text-2xl font-bold text-white">95%</p>
+                <p class="text-xs uppercase tracking-widest text-gray-500 mt-1">CSS3</p>
+            </div>
+
+            <div
+                class="skill-card bg-[#111] border border-zinc-800 p-8 rounded-3xl flex flex-col items-center justify-center transition-colors hover:border-[#ff9800] group">
+                <img src="assets/images/img_javascript_480.jpg"
+                    class="h-10 w-auto mb-8 grayscale group-hover:grayscale-0 transition-all">
+                <p class="text-2xl font-bold text-white">85%</p>
+                <p class="text-xs uppercase tracking-widest text-gray-500 mt-1">Javascript</p>
+            </div>
+
+            <div
+                class="skill-card bg-[#111] border border-zinc-800 p-8 rounded-3xl flex flex-col items-center justify-center transition-colors hover:border-[#ff9800] group">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg"
+                    class="h-10 w-auto mb-8 grayscale group-hover:grayscale-0 transition-all">
+                <p class="text-2xl font-bold text-white">90%</p>
+                <p class="text-xs uppercase tracking-widest text-gray-500 mt-1">Bootstrap</p>
+            </div>
+
+            <div
+                class="skill-card bg-[#111] border border-zinc-800 p-8 rounded-3xl flex flex-col items-center justify-center transition-colors hover:border-[#ff9800] group">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Figma-logo.svg"
+                    class="h-12 w-auto mb-6 grayscale group-hover:grayscale-0 transition-all">
+                <p class="text-2xl font-bold text-white">92%</p>
+                <p class="text-xs uppercase tracking-widest text-gray-500 mt-1">Figma</p>
+            </div>
+
+            <div
+                class="skill-card bg-[#111] border border-zinc-800 p-8 rounded-3xl flex flex-col items-center justify-center transition-colors hover:border-[#ff9800] group">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+                    class="h-12 w-auto mb-6 grayscale group-hover:grayscale-0 transition-all">
+                <p class="text-2xl font-bold text-white">88%</p>
+                <p class="text-xs uppercase tracking-widest text-gray-500 mt-1">React js</p>
+            </div>
+
+            <div
+                class="skill-card bg-[#111] border border-zinc-800 p-8 rounded-3xl flex flex-col items-center justify-center transition-colors hover:border-[#ff9800] group">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg"
+                    class="h-10 w-auto mb-6 invert grayscale group-hover:grayscale-0 transition-all">
+                <p class="text-2xl font-bold text-white">85%</p>
+                <p class="text-xs uppercase tracking-widest text-gray-500 mt-1">Next js</p>
+            </div>
+
+            <div
+                class="skill-card bg-[#111] border border-zinc-800 p-8 rounded-3xl flex flex-col items-center justify-center transition-colors hover:border-[#ff9800] group">
+                <svg class="h-12 w-auto mb-6 fill-zinc-600 group-hover:fill-white transition-all" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 0L2.4 6v12L12 24l9.6-6V6L12 0zm0 2.4l7.2 4.5V11L12 6.5 4.8 11V6.9l7.2-4.5zm0 19.2l-7.2-4.5v-4.1l7.2 4.5 7.2-4.5v4.1l-7.2 4.5z" />
+                </svg>
+                <p class="text-2xl font-bold text-white">85%</p>
+                <p class="text-xs uppercase tracking-widest text-gray-500 mt-1">Framer</p>
+            </div>
+
+            <div
+                class="skill-card bg-[#111] border border-zinc-800 p-8 rounded-3xl flex flex-col items-center justify-center transition-colors hover:border-[#ff9800] group">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg"
+                    class="h-8 w-auto mb-10 grayscale group-hover:grayscale-0 transition-all">
+                <p class="text-2xl font-bold text-white">95%</p>
+                <p class="text-xs uppercase tracking-widest text-gray-500 mt-1">Tailwind</p>
+            </div>
+
+            <div
+                class="skill-card bg-[#111] border border-zinc-800 p-8 rounded-3xl flex flex-col items-center justify-center transition-colors hover:border-[#ff9800] group">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/GraphQL_Logo.svg"
+                    class="h-12 w-auto mb-6 grayscale group-hover:grayscale-0 transition-all">
+                <p class="text-2xl font-bold text-white">75%</p>
+                <p class="text-xs uppercase tracking-widest text-gray-500 mt-1">GraphQL</p>
+            </div>
+
+            <div
+                class="skill-card bg-[#111] border border-zinc-800 p-8 rounded-3xl flex flex-col items-center justify-center transition-colors hover:border-[#ff9800] group">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Sass_Logo_Color.svg"
+                    class="h-12 w-auto mb-6 grayscale group-hover:grayscale-0 transition-all">
+                <p class="text-2xl font-bold text-white">80%</p>
+                <p class="text-xs uppercase tracking-widest text-gray-500 mt-1">Sass</p>
+            </div>
+
+            <div
+                class="skill-card bg-[#111] border border-zinc-800 p-8 rounded-3xl flex flex-col items-center justify-center transition-colors hover:border-[#ff9800] group">
+                <img src="assets/images/gsap.avif" class="w-24 w-auto grayscale group-hover:grayscale-0 transition-all">
+                <p class="text-2xl font-bold text-white">90%</p>
+                <p class="text-xs uppercase tracking-widest text-gray-500 mt-1">GSAP</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Project + -->
+    <section class="bg-[#000] w-full text-white overflow-hidden pt-12 md:pt-0">
+        <div class="max-w-6xl mx-auto px-6 flex">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 overflow-visible">
+
+                <!-- ITEM 1 -->
+                <div class="flex justify-center overflow-visible circle-border">
+                    <div class="flex items-center justify-center text-center
+				  w-[300px] h-[300px]
+				  md:w-[380px] md:h-[330px]
+				  rounded-full border border-[#2C2C2C] -mr-[45px]">
+                        <div class="text-white">
+                            <div class="flex justify-center items-end gap-1">
+                                <span class="counter text-[64px] md:text-[96px] font-light leading-none"
+                                    data-target="25">0</span>
+                                <span class="text-[32px] md:text-[48px] font-light mb-2">K</span>
+                            </div>
+                            <p class="mt-4 text-white/60">
+                                Project<br>completed
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ITEM 2 -->
+                <div class="flex justify-center overflow-visible circle-border">
+                    <div class="flex items-center justify-center text-center
+				  w-[300px] h-[300px]
+				  md:w-[380px] md:h-[330px]
+				  rounded-full border border-[#2C2C2C] -mr-[45px]">
+                        <div class="text-white">
+                            <div class="flex justify-center items-end gap-1">
+                                <span class="counter text-[64px] md:text-[96px] font-light leading-none"
+                                    data-target="8">0</span>
+                                <span class="text-[32px] md:text-[48px] font-light mb-2">K+</span>
+                            </div>
+                            <p class="mt-4 text-white/60">
+                                Happy<br>customers
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ITEM 3 -->
+                <div class="flex justify-center overflow-visible circle-border">
+                    <div class="flex items-center justify-center text-center
+				  w-[300px] h-[300px]
+				  md:w-[330px] md:h-[330px]
+				  rounded-full border border-[#2C2C2C] -mr-[45px]">
+                        <div class="text-white">
+                            <span class="counter text-[64px] md:text-[96px] font-light leading-none"
+                                data-target="15">0</span>
+                            <p class="mt-4 text-white/60">
+                                Years<br>experiences
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ITEM 4 -->
+                <div class="flex justify-center overflow-visible circle-border">
+                    <div class="flex items-center justify-center text-center
+				  w-[300px] h-[300px]
+				  md:w-[380px] md:h-[330px]
+				  rounded-full border border-[#2C2C2C]">
+                        <div class="text-white">
+                            <span class="counter text-[64px] md:text-[96px] font-light leading-none"
+                                data-target="98">0</span>
+                            <p class="mt-4 text-white/60">
+                                Awards<br>achievement
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll-percentage -->
+    <div class="fixed bottom-10 right-10 z-[300] flex items-center gap-4 pointer-events-none">
+
+
+        <div class="relative w-20 h-20 flex items-center justify-center">
+            <svg class="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                <circle class="text-zinc-800 stroke-current" stroke-width="8" cx="50" cy="50" r="40" fill="transparent">
+                </circle>
+                <circle id="progress-circle" class="text-[#ff9800] stroke-current transition-all duration-150"
+                    stroke-width="5" stroke-linecap="round" cx="50" cy="50" r="40" fill="#000" stroke-dasharray="251.2"
+                    stroke-dashoffset="251.2"></circle>
+            </svg>
+            <span id="scroll-percentage"
+                class="absolute inset-0 flex items-center justify-center text-white font-bold text-sm sync">0%</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact" class="min-h-screen py-32 px-[5%] flex flex-col justify-center items-center text-center">
+        <h2
+            class="text-6xl md:text-[10vw] sync tracking-tighter mb-12 hover:text-[#ff9800] transition-colors cursor-pointer leading-none">
+            Let's<br>Talk.</h2>
+        <div class="grid md:grid-cols-3 gap-12 w-full max-w-5xl mt-20">
+            <div class="reveal">
+                <p class="sync text-[10px] text-zinc-500 mb-4 tracking-widest">Email</p>
+                <p class="text-xl">hello@create.studio</p>
+            </div>
+            <div class="reveal">
+                <p class="sync text-[10px] text-zinc-500 mb-4 tracking-widest">Social</p>
+                <p class="text-xl">Instagram / Twitter / LinkedIn</p>
+            </div>
+            <div class="reveal">
+                <p class="sync text-[10px] text-zinc-500 mb-4 tracking-widest">Location</p>
+                <p class="text-xl">Los Angeles, CA</p>
+            </div>
+        </div>
+        <p class="text-zinc-600 sync text-[10px] tracking-widest mt-32">©2026 Designed for the Future</p>
+    </footer>
+
+    <script src="portfolio.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Front-End Engineer Portfolio</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Family -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Css File -->
+    <link rel="styleSheet" href="portfolio.css" type="text/css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
+
+    <!-- Standard favicon -->
+    <link rel="icon" href="assets/images/favicon.png" sizes="any">
+
+    <!-- PNG favicons -->
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon.png">
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon.png">
+
+    <!-- Android / Chrome -->
+    <link rel="manifest" href="assets/images/favicon.png">
+
+    <!-- Windows tiles -->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/images/favicon.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+</head>
+
+<body>
+
+    <div id="scroll-progress-container">
+        <div id="scroll-progress-bar"></div>
+    </div>
+
+    <div id="cursor" class="hidden md:block"></div>
+
+    <div id="menu-overlay">
+        <div class="flex flex-col text-right gap-4">
+            <a href="#hero" class="menu-link" onclick="toggleMenu()">HOME</a>
+            <a href="about.html" class="menu-link" onclick="toggleMenu()">About</a>
+            <a href="work.html" class="menu-link" onclick="toggleMenu()">WORK</a>
+            <a href="contact.html" class="menu-link" onclick="toggleMenu()">CONTACT</a>
+        </div>
+    </div>
+
+    <nav id="main-nav"
+        class="fixed top-0 left-1/2 -translate-x-1/2 bg-[#000] w-full  z-[250] p-6 md:py-4 md:px-16 flex justify-between items-center transition-colors duration-500">
+        <a href="home.html" class="sync text-xl font-bold text-[#ff9800] tracking-tighter">
+            <img src="assets/images/Logo.png" width="120px" height="120px">
+        </a>
+
+        <button onclick="toggleMenu()" class="flex flex-col items-end gap-1.5 group p-2">
+            <div id="line1" class="w-12 h-[2px] bg-white transition-all duration-300"></div>
+            <div id="line2" class="w-8 h-[2px] bg-white transition-all duration-300 group-hover:w-8"></div>
+        </button>
+    </nav>
+
+    <section id="contact-page" class="bg-[#0a0a0a] text-white py-24 px-6 min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto w-full">
+
+            <div class="mb-20 overflow-hidden">
+                <h2 class="contact-title text-[10vw] md:text-[8vw] font-bold leading-[0.95] uppercase tracking-tighter">
+                    LET'S CONNECT <br />
+                    <span class="text-zinc-800 outline-text">AND COLLABORATE</span><br />
+                    TODAY
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+
+                <form action="https://api.web3forms.com/submit" method="POST" id="contact-form"
+                    class="lg:col-span-8 space-y-8" novalidate>
+                    <input type="hidden" name="access_key" value="1ddca8d1-ca69-4894-bfaf-73594a9b1101">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div
+                            class="form-group border-b border-zinc-800 focus-within:border-[#ff9800] transition-colors pb-4 relative">
+                            <label class="block text-[10px] uppercase tracking-widest text-white mb-2">First
+                                Name</label>
+                            <input type="text" name="firstname" placeholder="Evelyn"
+                                class="peer w-full bg-transparent outline-none text-xl placeholder-zinc-700 text-white"
+                                required>
+                            <span
+                                class="absolute bottom-[-20px] left-0 text-[10px] text-red-500 opacity-0 peer-invalid:peer-focus:opacity-100 transition-opacity uppercase tracking-tighter">
+                                Please Enter Your First Name
+                            </span>
+                        </div>
+
+                        <div
+                            class="form-group border-b border-zinc-800 focus-within:border-[#ff9800] transition-colors pb-4 relative">
+                            <label class="block text-[10px] uppercase tracking-widest text-white mb-2">Last Name</label>
+                            <input type="text" name="lastname" placeholder="Wilson"
+                                class="peer w-full bg-transparent outline-none text-xl placeholder-zinc-700 text-white"
+                                required>
+                            <span
+                                class="absolute bottom-[-20px] left-0 text-[10px] text-red-500 opacity-0 peer-invalid:peer-focus:opacity-100 transition-opacity uppercase tracking-tighter">Please
+                                enter your last name</span>
+                        </div>
+                    </div>
+
+                    <div
+                        class="form-group border-b border-zinc-800 focus-within:border-[#ff9800] transition-colors pb-4 relative">
+                        <label class="block text-[10px] uppercase tracking-widest text-white mb-2">Your email id</label>
+                        <input type="email" name="email" placeholder="support@gmail.com"
+                            class="peer w-full bg-transparent outline-none text-xl placeholder-zinc-700 text-white"
+                            required>
+                        <span
+                            class="absolute bottom-[-20px] left-0 text-[10px] text-red-500 opacity-0 peer-invalid:peer-focus:opacity-100 transition-opacity uppercase tracking-tighter">Please
+                            enter a valid email address</span>
+                    </div>
+
+                    <div
+                        class="form-group border-b border-zinc-800 focus-within:border-[#ff9800] transition-colors pb-4 relative">
+                        <label class="block text-[10px] uppercase tracking-widest text-white mb-2">Tell us about your
+                            project</label>
+                        <textarea name="project" placeholder="Hey, Just wanna get a free quote..." rows="4"
+                            class="peer w-full bg-transparent outline-none text-xl placeholder-zinc-700 resize-none text-white"
+                            required></textarea>
+                        <span
+                            class="absolute bottom-[-20px] left-0 text-[10px] text-red-500 opacity-0 peer-invalid:peer-focus:opacity-100 transition-opacity uppercase tracking-tighter">Please
+                            tell me what you would like to talk about.
+                        </span>
+                    </div>
+
+                    <div class="pt-8">
+                        <button type="submit"
+                            class="magnetic-btn group relative flex items-center gap-4 bg-[#ff9800] text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest text-sm overflow-hidden">
+                            <span class="relative z-10">Submit Now</span>
+                            <div
+                                class="relative z-10 w-8 h-8 bg-white text-black rounded-full flex items-center justify-center group-hover:rotate-45 transition-transform">
+                                →</div>
+                        </button>
+                    </div>
+                </form>
+
+                <div class="lg:col-span-4 space-y-12">
+                    <div class="info-item">
+                        <p class="text-xs uppercase tracking-widest text-[#ff9800] mb-4">Email</p>
+                        <a href="mailto:kumar.deepak201199@gmail.com"
+                            class="text-2xl font-bold tracking-tight hover:text-[#ff9800] transition-colors duration-300">
+                            kumar.deepak201199@gmail.com
+                        </a>
+                    </div>
+
+                    <div class="info-item">
+                        <p class="text-xs uppercase tracking-widest text-[#ff9800] mb-4">Phone Number</p>
+                        <a href="tel:+919463360914"
+                            class="text-2xl font-bold tracking-tight hover:text-[#ff9800] transition-colors duration-300">
+                            +91 94633 60914
+                        </a>
+                    </div>
+
+                    <div class="info-item">
+                        <p class="text-xs uppercase tracking-widest text-[#ff9800] mb-4">Location</p>
+                        <a href="https://maps.google.com/?q=Sector+35B,+Chandigarh,+India" target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-2xl font-bold tracking-tight hover:text-[#ff9800] transition-colors duration-300">
+                            Chandigarh, Sector 35-B, India
+                        </a>
+                    </div>
+
+                    <div class="info-item">
+                        <p class="text-xs uppercase tracking-widest text-[#ff9800] mb-4">Availability</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></div>
+                            <h4 class="text-2xl font-bold tracking-tight">
+                                Open to Opportunities
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll-percentage -->
+    <div class="fixed bottom-10 right-10 z-[300] flex items-center gap-4 pointer-events-none">
+
+
+        <div class="relative w-20 h-20 flex items-center justify-center">
+            <svg class="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                <circle class="text-zinc-800 stroke-current" stroke-width="8" cx="50" cy="50" r="40" fill="transparent">
+                </circle>
+                <circle id="progress-circle" class="text-[#ff9800] stroke-current transition-all duration-150"
+                    stroke-width="5" stroke-linecap="round" cx="50" cy="50" r="40" fill="#000" stroke-dasharray="251.2"
+                    stroke-dashoffset="251.2"></circle>
+            </svg>
+            <span id="scroll-percentage"
+                class="absolute inset-0 flex items-center justify-center text-white font-bold text-sm sync">0%</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact" class="min-h-screen py-32 px-[5%] flex flex-col justify-center items-center text-center">
+        <h2
+            class="text-6xl md:text-[10vw] sync tracking-tighter mb-12 hover:text-[#ff9800] transition-colors cursor-pointer leading-none">
+            Let's<br>Talk.</h2>
+        <div class="grid md:grid-cols-3 gap-12 w-full max-w-5xl mt-20">
+            <div class="reveal">
+                <p class="sync text-[10px] text-zinc-500 mb-4 tracking-widest">Email</p>
+                <p class="text-xl">
+                    <a href="mailto:kumar.deepak201199@gmail.com"
+                        class="hover:text-[#ff9800] transition-colors duration-300">
+                        kumar.deepak201199@gmail.com
+                    </a>
+                </p>
+            </div>
+            <div class="reveal">
+                <p class="sync text-[10px] text-zinc-500 mb-4 tracking-widest">Social</p>
+                <a href="https://www.linkedin.com/in/deepak-kumar-bb49a0240/" target="_blank" rel="noopener noreferrer"
+                    class="text-xl hover:text-[#ff9800] transition-colors duration-300"> LinkedIn</a>
+            </div>
+            <div class="reveal">
+                <div>
+                    <p class="sync text-[10px] text-zinc-500 mb-4 tracking-widest uppercase">
+                        Location
+                    </p>
+                    <a href="https://maps.google.com/?q=Sector+35-B,+Chandigarh,+India" target="_blank"
+                        rel="noopener noreferrer" class="text-xl hover:text-[#ff9800] transition-colors duration-300">
+                        Sector 35-B, Chandigarh, India
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p class="text-zinc-600 sync text-[10px] tracking-widest mt-32">
+            © 2026 Designed & Developed by Deepak Kumar. All Rights Reserved.
+        </p>
+    </footer>
+
+    <script src="portfolio.js"></script>
+
+</body>
+
+</html>
