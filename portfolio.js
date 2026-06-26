@@ -184,7 +184,7 @@ function initializePortfolio() {
             });
         });
 
-        // ABOUT section timeline (from home.html 500-534)
+        // ABOUT section timeline (from index.html 500-534)
         const aboutSection = document.querySelector("#about");
         if (aboutSection) {
             const tlAbout = gsap.timeline({
