@@ -43,7 +43,7 @@
 
 <body>
 
-    <div id="loader" class="fixed inset-0 z-[1000] bg-black flex items-center justify-center">
+    <!-- <div id="loader" class="fixed inset-0 z-[1000] bg-black flex items-center justify-center">
         <div class="text-center">
             <div id="loader-bar" class="w-[800px] h-[1px] bg-zinc-800 mb-4 overflow-hidden">
                 <div id="loader-fill" class="w-0 h-full bg-[#ff9800]"></div>
@@ -55,7 +55,7 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Right Scroll -->
     <div id="scroll-progress-container">
@@ -179,8 +179,8 @@
                 </a>
             </div>
 
-            <div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-                <img src="assets/images/download.png" alt="" class="absolute -bottom-20 w-[300px] h-[300px] md:w-[950px] md:h-[1000px]
+            <div class="absolute inset-0 z-0 d-none flex items-center justify-center pointer-events-none ">
+                <img src="assets/images/download.png" alt="" class="absolute bottom-[18rem] md:-bottom-20 w-[400px] h-[400px] object-contain md:w-[950px] md:h-[1000px]
                            object-cover opacity-80 mix-blend-lighten">
             </div>
 
@@ -691,9 +691,13 @@
 
     <!-- Footer -->
     <footer id="contact" class="min-h-screen py-32 px-[5%] flex flex-col justify-center items-center text-center">
-        <h2
-            class="text-6xl md:text-[10vw] sync tracking-tighter mb-12 hover:text-[#ff9800] transition-colors cursor-pointer leading-none">
-            Let's<br>Talk.</h2>
+        <a href="tel:9463360914">
+  <h2
+    class="text-5xl sm:text-6xl md:text-[10vw] sync tracking-tighter mb-8 md:mb-12 hover:text-[#ff9800] transition-colors duration-300 cursor-pointer leading-none"
+  >
+    Let's<br />Talk.
+  </h2>
+</a>
         <div class="grid md:grid-cols-3 gap-12 w-full max-w-5xl mt-20">
             <div class="reveal">
                 <p class="sync text-[10px] text-zinc-500 mb-4 tracking-widest">Email</p>
@@ -721,7 +725,7 @@
                 </div>
             </div>
         </div>
-        <p class="text-zinc-600 sync text-[10px] tracking-widest mt-32">
+        <p class="text-zinc-400 text-bold text-[12px] tracking-widest pt-8 md:mt-32 px-4">
             © 2026 Designed & Developed by Deepak Kumar. All Rights Reserved.
         </p>
     </footer>
