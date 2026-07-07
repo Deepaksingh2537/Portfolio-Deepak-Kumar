@@ -603,315 +603,335 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
- gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
-    document.addEventListener("DOMContentLoaded", () => {
-      // Header reveal
-      gsap.from(".reveal-container h2", {
-        scrollTrigger: {
-          trigger: "#our-work",
-          start: "top 80%",
-        },
-        y: 100,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power4.out",
-        skewY: 7,
+document.addEventListener("DOMContentLoaded", () => {
+  // Header reveal
+  gsap.from(".reveal-container h2", {
+    scrollTrigger: {
+      trigger: "#our-work",
+      start: "top 80%",
+    },
+    y: 100,
+    opacity: 0,
+    duration: 1.2,
+    ease: "power4.out",
+    skewY: 7,
+  });
+
+  // Card stagger
+  gsap.from(".work-card", {
+    scrollTrigger: {
+      trigger: "#our-work",
+      start: "top 85%",
+    },
+    y: 150,
+    opacity: 0,
+    duration: 1,
+    stagger: 0.2,
+    ease: "expo.out",
+  });
+
+  // Magnetic hover
+  const cards = document.querySelectorAll(".work-card");
+  cards.forEach((card) => {
+    const icon = card.querySelector(".w-10, .w-12");
+    if (!icon) return;
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      gsap.to(icon, {
+        x: x * 0.1,
+        y: y * 0.1,
+        duration: 0.5,
+        ease: "power2.out",
       });
-
-      // Card stagger
-      gsap.from(".work-card", {
-        scrollTrigger: {
-          trigger: "#our-work",
-          start: "top 85%",
-        },
-        y: 150,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.2,
-        ease: "expo.out",
-      });
-
-      // Magnetic hover
-      const cards = document.querySelectorAll(".work-card");
-      cards.forEach((card) => {
-        const icon = card.querySelector(".w-10, .w-12");
-        if (!icon) return;
-        card.addEventListener("mousemove", (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          gsap.to(icon, {
-            x: x * 0.1,
-            y: y * 0.1,
-            duration: 0.5,
-            ease: "power2.out",
-          });
-        });
-        card.addEventListener("mouseleave", () => {
-          gsap.to(icon, {
-            x: 0,
-            y: 0,
-            duration: 0.5,
-            ease: "elastic.out(1, 0.3)",
-          });
-        });
-      });
-
-      // ============ CAROUSEL WITH SMART SCROLL ============
-      const carousel = document.querySelector("#work-carousel");
-      const wrapper = document.querySelector("#carouselWrapper");
-      const workCards = gsap.utils.toArray("#work-carousel .work-card");
-      const dotsContainer = document.getElementById("carouselDots");
-      const scrollbar = document.getElementById("carouselScrollbar");
-      const progressBar = document.getElementById("scrollProgress");
-
-      if (!carousel || workCards.length < 2) return;
-
-      let currentIndex = 0;
-      let isDragging = false;
-      let startX = 0;
-      let currentX = 0;
-      let autoPlayInterval = null;
-      let isPaused = false;
-      let isHovering = false;
-
-      // Create dots
-      workCards.forEach((_, index) => {
-        const dot = document.createElement("button");
-        dot.classList.add("dot");
-        if (index === 0) dot.classList.add("active");
-        dot.dataset.index = index;
-        dot.addEventListener("click", () => goToSlide(index, true));
-        dotsContainer.appendChild(dot);
-      });
-
-      const dots = document.querySelectorAll(".dot");
-
-      function getCardWidth() {
-        const firstCard = workCards[0];
-        if (!firstCard) return window.innerWidth * 0.88;
-        const style = window.getComputedStyle(firstCard);
-        const flexBasis = parseFloat(style.flexBasis) || firstCard.offsetWidth;
-        const gap = 24;
-        return flexBasis + gap;
-      }
-
-      function getShift(index) {
-        const w = getCardWidth();
-        return w * index;
-      }
-
-      function updateDots(index) {
-        dots.forEach((dot, i) => {
-          dot.classList.toggle("active", i === index);
-        });
-      }
-
-      function updateProgress(index) {
-        const total = workCards.length;
-        const progress = ((index) / (total - 1)) * 100;
-        progressBar.style.width = `${Math.min(100, progress)}%`;
-      }
-
-      function goToSlide(index, animate = true) {
-        if (index < 0) index = 0;
-        if (index >= workCards.length) index = workCards.length - 1;
-        
-        currentIndex = index;
-        const xPos = -getShift(currentIndex);
-        
-        if (animate) {
-          gsap.to(carousel, {
-            x: xPos,
-            duration: 0.8,
-            ease: "power3.inOut",
-            onComplete: () => {
-              updateDots(currentIndex);
-              updateProgress(currentIndex);
-            }
-          });
-        } else {
-          gsap.set(carousel, { x: xPos });
-          updateDots(currentIndex);
-          updateProgress(currentIndex);
-        }
-      }
-
-      function nextSlide() {
-        const next = (currentIndex + 1) % workCards.length;
-        goToSlide(next, true);
-      }
-
-      function prevSlide() {
-        const prev = currentIndex - 1;
-        goToSlide(prev >= 0 ? prev : workCards.length - 1, true);
-      }
-
-      // Auto-play
-      function startAutoPlay() {
-        if (autoPlayInterval) clearInterval(autoPlayInterval);
-        autoPlayInterval = setInterval(() => {
-          if (!isPaused && !isDragging) {
-            nextSlide();
-          }
-        }, 4000);
-      }
-
-      function stopAutoPlay() {
-        if (autoPlayInterval) {
-          clearInterval(autoPlayInterval);
-          autoPlayInterval = null;
-        }
-      }
-
-      // ===== DRAG SUPPORT =====
-      function handleDragStart(e) {
-        const clientX = e.type === 'mousedown' ? e.clientX : e.touches[0].clientX;
-        // Only start drag if we're not scrolling vertically
-        isDragging = true;
-        isPaused = true;
-        startX = clientX;
-        currentX = gsap.getProperty(carousel, "x");
-        wrapper.style.cursor = 'grabbing';
-        stopAutoPlay();
-      }
-
-      function handleDragMove(e) {
-        if (!isDragging) return;
-        const clientX = e.type === 'mousemove' ? e.clientX : e.touches[0].clientX;
-        const diff = clientX - startX;
-        const newX = currentX + diff;
-        
-        const maxX = 0;
-        const minX = -(workCards.length - 1) * getCardWidth();
-        const clampedX = Math.max(minX, Math.min(maxX, newX));
-        
-        gsap.set(carousel, { x: clampedX });
-        
-        const cardWidth = getCardWidth();
-        const approximateIndex = Math.round(Math.abs(clampedX) / cardWidth);
-        const newIndex = Math.min(workCards.length - 1, Math.max(0, approximateIndex));
-        if (newIndex !== currentIndex) {
-          currentIndex = newIndex;
-          updateDots(currentIndex);
-          updateProgress(currentIndex);
-        }
-      }
-
-      function handleDragEnd(e) {
-        if (!isDragging) return;
-        isDragging = false;
-        wrapper.style.cursor = 'grab';
-        
-        const cardWidth = getCardWidth();
-        const currentXPos = gsap.getProperty(carousel, "x");
-        const approximateIndex = Math.round(Math.abs(currentXPos) / cardWidth);
-        const snappedIndex = Math.min(workCards.length - 1, Math.max(0, approximateIndex));
-        
-        goToSlide(snappedIndex, true);
-        isPaused = false;
-        startAutoPlay();
-      }
-
-      // Mouse events - only when hovering over carousel
-      wrapper.addEventListener('mousedown', (e) => {
-        // Only handle horizontal drag, not vertical scroll
-        handleDragStart(e);
-      });
-      document.addEventListener('mousemove', handleDragMove);
-      document.addEventListener('mouseup', handleDragEnd);
-
-      // Touch events
-      wrapper.addEventListener('touchstart', handleDragStart, { passive: true });
-      document.addEventListener('touchmove', handleDragMove, { passive: true });
-      document.addEventListener('touchend', handleDragEnd, { passive: true });
-
-      // ===== SCROLL WHEEL SUPPORT (Only when hovering) =====
-      let wheelTimeout = false;
-      wrapper.addEventListener('mouseenter', () => {
-        isHovering = true;
-      });
-      wrapper.addEventListener('mouseleave', () => {
-        isHovering = false;
-      });
-
-      wrapper.addEventListener('wheel', (e) => {
-        // Only handle wheel events when hovering over the carousel
-        if (!isHovering) return;
-        
-        e.preventDefault();
-        if (wheelTimeout) return;
-        
-        wheelTimeout = true;
-        setTimeout(() => { wheelTimeout = false; }, 500);
-
-        const direction = e.deltaY > 0 ? 1 : -1;
-        const newIndex = currentIndex + direction;
-        
-        if (newIndex >= 0 && newIndex < workCards.length) {
-          goToSlide(newIndex, true);
-          // Pause auto-play briefly
-          isPaused = true;
-          setTimeout(() => {
-            isPaused = false;
-          }, 2000);
-        }
-      }, { passive: false });
-
-      // ===== SCROLLBAR CLICK =====
-      scrollbar.addEventListener('click', (e) => {
-        const rect = scrollbar.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const percentage = x / rect.width;
-        const index = Math.round(percentage * (workCards.length - 1));
-        goToSlide(Math.min(workCards.length - 1, Math.max(0, index)), true);
-      });
-
-      // ===== KEYBOARD NAVIGATION =====
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-          e.preventDefault();
-          prevSlide();
-        } else if (e.key === 'ArrowRight') {
-          e.preventDefault();
-          nextSlide();
-        }
-      });
-
-      // ===== RESIZE HANDLER =====
-      let resizeTimeout;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-          goToSlide(currentIndex, false);
-        }, 150);
-      });
-
-      window.addEventListener('orientationchange', () => {
-        setTimeout(() => {
-          goToSlide(currentIndex, false);
-        }, 300);
-      });
-
-      // Initialize
-      goToSlide(0, false);
-      startAutoPlay();
-
-      // Pause on hover
-      wrapper.addEventListener('mouseenter', () => { 
-        isPaused = true; 
-        isHovering = true;
-      });
-      wrapper.addEventListener('mouseleave', () => { 
-        isPaused = false; 
-        isHovering = false;
-        startAutoPlay();
-      });
-
-      // ScrollTrigger refresh
-      ScrollTrigger.refresh();
     });
+    card.addEventListener("mouseleave", () => {
+      gsap.to(icon, {
+        x: 0,
+        y: 0,
+        duration: 0.5,
+        ease: "elastic.out(1, 0.3)",
+      });
+    });
+  });
+
+  // ============ CAROUSEL WITH SMART SCROLL ============
+  const carousel = document.querySelector("#work-carousel");
+  const wrapper = document.querySelector("#carouselWrapper");
+  const workCards = gsap.utils.toArray("#work-carousel .work-card");
+  const dotsContainer = document.getElementById("carouselDots");
+  const scrollbar = document.getElementById("carouselScrollbar");
+  const progressBar = document.getElementById("scrollProgress");
+
+  if (!carousel || workCards.length < 2) return;
+
+  let currentIndex = 0;
+  let isDragging = false;
+  let startX = 0;
+  let currentX = 0;
+  let autoPlayInterval = null;
+  let isPaused = false;
+  let isHovering = false;
+
+  // Create dots
+  workCards.forEach((_, index) => {
+    const dot = document.createElement("button");
+    dot.classList.add("dot");
+    if (index === 0) dot.classList.add("active");
+    dot.dataset.index = index;
+    dot.addEventListener("click", () => goToSlide(index, true));
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll(".dot");
+
+  function getCardWidth() {
+    const firstCard = workCards[0];
+    if (!firstCard) return window.innerWidth * 0.88;
+    const style = window.getComputedStyle(firstCard);
+    const flexBasis = parseFloat(style.flexBasis) || firstCard.offsetWidth;
+    const gap = 24;
+    return flexBasis + gap;
+  }
+
+  function getShift(index) {
+    const w = getCardWidth();
+    return w * index;
+  }
+
+  function updateDots(index) {
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === index);
+    });
+  }
+
+  function updateProgress(index) {
+    const total = workCards.length;
+    const progress = (index / (total - 1)) * 100;
+    progressBar.style.width = `${Math.min(100, progress)}%`;
+  }
+
+  function goToSlide(index, animate = true) {
+    if (index < 0) index = 0;
+    if (index >= workCards.length) index = workCards.length - 1;
+
+    currentIndex = index;
+    const xPos = -getShift(currentIndex);
+
+    if (animate) {
+      gsap.to(carousel, {
+        x: xPos,
+        duration: 0.8,
+        ease: "power3.inOut",
+        onComplete: () => {
+          updateDots(currentIndex);
+          updateProgress(currentIndex);
+        },
+      });
+    } else {
+      gsap.set(carousel, { x: xPos });
+      updateDots(currentIndex);
+      updateProgress(currentIndex);
+    }
+  }
+
+  function nextSlide() {
+    const next = (currentIndex + 1) % workCards.length;
+    goToSlide(next, true);
+  }
+
+  function prevSlide() {
+    const prev = currentIndex - 1;
+    goToSlide(prev >= 0 ? prev : workCards.length - 1, true);
+  }
+
+  // Auto-play
+  function startAutoPlay() {
+    if (autoPlayInterval) clearInterval(autoPlayInterval);
+    autoPlayInterval = setInterval(() => {
+      if (!isPaused && !isDragging) {
+        nextSlide();
+      }
+    }, 4000);
+  }
+
+  function stopAutoPlay() {
+    if (autoPlayInterval) {
+      clearInterval(autoPlayInterval);
+      autoPlayInterval = null;
+    }
+  }
+
+  // ===== DRAG SUPPORT =====
+  function handleDragStart(e) {
+    const clientX = e.type === "mousedown" ? e.clientX : e.touches[0].clientX;
+    // Only start drag if we're not scrolling vertically
+    isDragging = true;
+    isPaused = true;
+    startX = clientX;
+    currentX = gsap.getProperty(carousel, "x");
+    wrapper.style.cursor = "grabbing";
+    stopAutoPlay();
+  }
+
+  function handleDragMove(e) {
+    if (!isDragging) return;
+    const clientX = e.type === "mousemove" ? e.clientX : e.touches[0].clientX;
+    const diff = clientX - startX;
+    const newX = currentX + diff;
+
+    const maxX = 0;
+    const minX = -(workCards.length - 1) * getCardWidth();
+    const clampedX = Math.max(minX, Math.min(maxX, newX));
+
+    gsap.set(carousel, { x: clampedX });
+
+    const cardWidth = getCardWidth();
+    const approximateIndex = Math.round(Math.abs(clampedX) / cardWidth);
+    const newIndex = Math.min(
+      workCards.length - 1,
+      Math.max(0, approximateIndex),
+    );
+    if (newIndex !== currentIndex) {
+      currentIndex = newIndex;
+      updateDots(currentIndex);
+      updateProgress(currentIndex);
+    }
+  }
+
+  function handleDragEnd(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    wrapper.style.cursor = "grab";
+
+    const cardWidth = getCardWidth();
+    const currentXPos = gsap.getProperty(carousel, "x");
+    const approximateIndex = Math.round(Math.abs(currentXPos) / cardWidth);
+    const snappedIndex = Math.min(
+      workCards.length - 1,
+      Math.max(0, approximateIndex),
+    );
+
+    goToSlide(snappedIndex, true);
+    isPaused = false;
+    startAutoPlay();
+  }
+
+  // Mouse events - only when hovering over carousel
+  wrapper.addEventListener("mousedown", (e) => {
+    // Only handle horizontal drag, not vertical scroll
+    handleDragStart(e);
+  });
+  document.addEventListener("mousemove", handleDragMove);
+  document.addEventListener("mouseup", handleDragEnd);
+
+  // Touch events
+  wrapper.addEventListener("touchstart", handleDragStart, { passive: true });
+  document.addEventListener("touchmove", handleDragMove, { passive: true });
+  document.addEventListener("touchend", handleDragEnd, { passive: true });
+
+  // ===== SCROLL WHEEL SUPPORT (Only when hovering) =====
+  let wheelTimeout = false;
+  wrapper.addEventListener("mouseenter", () => {
+    isHovering = true;
+  });
+  wrapper.addEventListener("mouseleave", () => {
+    isHovering = false;
+  });
+
+  wrapper.addEventListener(
+    "wheel",
+    (e) => {
+      // Only handle wheel events when hovering over the carousel
+      if (!isHovering) return;
+
+      e.preventDefault();
+      if (wheelTimeout) return;
+
+      wheelTimeout = true;
+      setTimeout(() => {
+        wheelTimeout = false;
+      }, 500);
+
+      const direction = e.deltaY > 0 ? 1 : -1;
+      const newIndex = currentIndex + direction;
+
+      if (newIndex >= 0 && newIndex < workCards.length) {
+        goToSlide(newIndex, true);
+        // Pause auto-play briefly
+        isPaused = true;
+        setTimeout(() => {
+          isPaused = false;
+        }, 2000);
+      }
+    },
+    { passive: false },
+  );
+
+  // ===== SCROLLBAR CLICK =====
+  scrollbar.addEventListener("click", (e) => {
+    const rect = scrollbar.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percentage = x / rect.width;
+    const index = Math.round(percentage * (workCards.length - 1));
+    goToSlide(Math.min(workCards.length - 1, Math.max(0, index)), true);
+  });
+
+  // ===== KEYBOARD NAVIGATION =====
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      prevSlide();
+    } else if (e.key === "ArrowRight") {
+      e.preventDefault();
+      nextSlide();
+    }
+  });
+
+  // ===== RESIZE HANDLER =====
+  let resizeTimeout;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      goToSlide(currentIndex, false);
+    }, 150);
+  });
+
+  window.addEventListener("orientationchange", () => {
+    setTimeout(() => {
+      goToSlide(currentIndex, false);
+    }, 300);
+  });
+
+  // Initialize
+  goToSlide(0, false);
+  startAutoPlay();
+
+  // Pause on hover
+  wrapper.addEventListener("mouseenter", () => {
+    isPaused = true;
+    isHovering = true;
+  });
+  wrapper.addEventListener("mouseleave", () => {
+    isPaused = false;
+    isHovering = false;
+    startAutoPlay();
+  });
+
+  // ScrollTrigger refresh
+  ScrollTrigger.refresh();
+});
+
+// Scroll to Top Onclick logo Home Page
+document.querySelector(".sync").addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
 
 gsap.registerPlugin(ScrollTrigger);
 
