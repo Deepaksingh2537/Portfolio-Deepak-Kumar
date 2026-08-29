@@ -56,7 +56,7 @@
   </head>
 
   <body>
-    <div
+    <!-- <div
       id="loader"
       class="fixed inset-0 z-[1000] bg-black flex items-center justify-center"
     >
@@ -79,7 +79,7 @@
           </video>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Right Scroll -->
     <div id="scroll-progress-container">
@@ -181,10 +181,12 @@
           </p>
         </div>
 
-        <div class="md:col-span-12 py-12">
+        <div
+          class="md:col-span-12 py-12 relative top-[100px] z-10 lg:top-[220px]"
+        >
           <h1
             id="hero-title"
-            class="text-[14vw] md:text-[14vw] sync leading-[0.8] tracking-tighter text-center"
+            class="text-[14vw] md:text-[12vw] font-bold sync leading-[0.8] tracking-tighter text-center"
           >
             <span class="word-create"></span><span class="word-studio"></span
             ><span class="cursor"></span>
@@ -311,13 +313,16 @@
           <div class="space-y-6 max-w-lg text-zinc-600">
             <p class="about-p text-lg leading-relaxed">
               I'm a
-              <span class="text-black font-medium">Front-End Developer</span>
-              with a passion for creating responsive, accessible, and visually
-              appealing websites. I specialize in HTML, CSS, Tailwind CSS,
-              Bootstrap, JavaScript, ES6, Typescript, React.js, and Next.js,
-              delivering fast and engaging user experiences.
+              <span class="text-black font-medium">Frontend Developer</span>
+              focused on transforming ideas and designs into modern, responsive,
+              and high-performance digital experiences. With expertise in
+              <span class="text-black font-medium">
+                React.js, Next.js, JavaScript, TypeScript, Tailwind CSS,
+                Bootstrap, Redux, REST APIs, and API integration
+              </span>
+              , I create scalable interfaces with a strong focus on clean code,
+              intuitive UI/UX, performance, and accessibility.
             </p>
-
             <p
               class="about-p text-lg leading-relaxed border-l-2 border-[#ff9800] pl-6 italic"
             >
@@ -654,6 +659,65 @@
 
         <!-- Navigation Dots -->
         <div class="carousel-dots" id="carouselDots"></div>
+
+        <!-- Let's Chat WhatsApp Button -->
+        <div
+          class="flex justify-center mb-6 fixed bottom-5 right-5 md:bottom-28 md:right-12 z-[9999]"
+        >
+          <a
+            href="https://wa.me/919463360914?text=Hello Deepak! I came across your portfolio and would like to discuss a potential opportunity with you. Are you available to connect and discuss the details?"
+            target="_blank"
+            rel="noopener noreferrer"
+            id="whatsappBtn"
+            aria-label="Chat on WhatsApp"
+            class="whatsapp-btn group inline-flex items-center gap-3 px-4 py-4 rounded-full bg-[#25D366] text-white font-semibold shadow-lg"
+          >
+            <!-- WhatsApp Logo -->
+            <svg
+              class="whatsapp-icon w-8 h-8"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20.52 3.48A11.82 11.82 0 0 0 12.06 0C5.5 0 .16 5.34.16 11.91c0 2.1.55 4.15 1.6 5.96L.05 24l6.27-1.64a11.86 11.86 0 0 0 5.73 1.46h.01c6.56 0 11.9-5.34 11.9-11.91 0-3.18-1.24-6.17-3.44-8.43ZM12.06 21.82h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.72.97.99-3.62-.23-.37a9.88 9.88 0 0 1-1.52-5.3c0-5.47 4.45-9.92 9.92-9.92 2.65 0 5.14 1.03 7.01 2.91a9.86 9.86 0 0 1 2.91 7.02c0 5.47-4.45 9.9-9.92 9.9Zm5.44-7.42c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.49 1.7.63.72.23 1.37.2 1.89.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35Z"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <!-- LinkedIn Floating Button -->
+        <a
+          href="https://www.linkedin.com/in/deepak-kumar-bb49a0240/"
+          target="_blank"
+          rel="noopener noreferrer"
+          id="linkedinBtn"
+          aria-label="Visit LinkedIn Profile"
+          class="social-float whatsapp-icon linkedin-btn fixed bottom-[12.5rem] right-12 z-[9999] flex h-16 w-16 items-center justify-center rounded-full bg-[#0A66C2] text-white shadow-xl"
+        >
+          <!-- Animated Ring -->
+          <span class="social-ring"></span>
+
+          <!-- LinkedIn Logo -->
+          <svg
+            class="linkedin-icon relative z-10 h-8 w-8"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V8.999h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.602 0 4.267 2.37 4.267 5.455v6.287zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.114 20.452H3.56V8.999h3.554v11.453zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.454C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"
+            />
+          </svg>
+
+          <!-- Tooltip -->
+          <span class="social-tooltip"> LinkedIn </span>
+        </a>
+
+        <!-- Carousel Scrollbar -->
+        <div class="carousel-scrollbar" id="carouselScrollbar">
+          <div class="carousel-scrollbar-progress" id="scrollProgress"></div>
+        </div>
 
         <!-- Scrollbar -->
         <div class="carousel-scrollbar" id="carouselScrollbar">
@@ -992,7 +1056,7 @@
       <!-- Experience List -->
       <div class="max-w-7xl mx-auto">
         <!-- Item -->
-        <div class="experience-item px-4">
+        <div class="experience-item">
           <div>
             <p class="label">Company Name</p>
             <p class="value">Neebha Web Services Pvt.Ltd</p>
@@ -1145,6 +1209,7 @@
         © 2026 Designed & Developed by Deepak Kumar. All Rights Reserved.
       </p>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
     <script src="portfolio.js"></script>
   </body>

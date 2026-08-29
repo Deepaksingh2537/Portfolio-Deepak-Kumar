@@ -353,6 +353,79 @@ function initializePortfolio() {
   });
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  const whatsappBtn = document.getElementById("whatsappBtn");
+
+  if (!whatsappBtn) return;
+
+  const whatsappIcon = whatsappBtn.querySelector(".whatsapp-icon");
+  const chatArrow = whatsappBtn.querySelector(".chat-arrow");
+
+  if (typeof gsap !== "undefined") {
+    gsap.fromTo(
+      whatsappBtn,
+      { y: 30, opacity: 0, scale: 0.9 },
+      { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.7)" },
+    );
+
+    gsap.to(whatsappBtn, {
+      y: -4,
+      duration: 1.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+
+    whatsappBtn.addEventListener("mouseenter", () => {
+      gsap.to(whatsappBtn, {
+        scale: 1.05,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+
+      if (whatsappIcon) {
+        gsap.to(whatsappIcon, {
+          rotation: 12,
+          scale: 1.15,
+          duration: 0.3,
+          ease: "back.out(2)",
+        });
+      }
+
+      if (chatArrow) {
+        gsap.to(chatArrow, {
+          x: 5,
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      }
+    });
+
+    whatsappBtn.addEventListener("mouseleave", () => {
+      gsap.to(whatsappBtn, {
+        scale: 1,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+
+      if (whatsappIcon) {
+        gsap.to(whatsappIcon, {
+          rotation: 0,
+          scale: 1,
+          duration: 0.3,
+        });
+      }
+
+      if (chatArrow) {
+        gsap.to(chatArrow, {
+          x: 0,
+          duration: 0.3,
+        });
+      }
+    });
+  }
+});
+
 // Initialize everything when DOM is ready
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initializePortfolio);
@@ -486,69 +559,75 @@ gsap.registerPlugin(ScrollTrigger);
 document.addEventListener("DOMContentLoaded", () => {
   // 1. Text Splitting & Reveal
   const textElement = document.querySelector("#animate-text");
-  const textContent = textElement.textContent.trim();
-  const words = textContent.split(" ");
+  if (textElement) {
+    const textContent = textElement.textContent.trim();
+    const words = textContent.split(" ");
 
-  // Clear and rebuild with spans for character control
-  textElement.innerHTML = words
-    .map((word) => {
-      return `<span class="inline-block overflow-hidden">
-            ${word
-              .split("")
-              .map((char) => `<span class="char inline-block">${char}</span>`)
-              .join("")}
-        </span>`;
-    })
-    .join(" ");
+    // Clear and rebuild with spans for character control
+    textElement.innerHTML = words
+      .map((word) => {
+        return `<span class="inline-block overflow-hidden">
+              ${word
+            .split("")
+            .map((char) => `<span class="char inline-block">${char}</span>`)
+            .join("")}
+          </span>`;
+      })
+      .join(" ");
 
-  // GSAP Timeline for the reveal
-  gsap.from(".char", {
-    scrollTrigger: {
-      trigger: "#animate-text",
-      start: "top 85%",
-      toggleActions: "play none none reverse",
-    },
-    y: 150,
-    stagger: 0.02,
-    duration: 1,
-    ease: "expo.out",
-    rotation: 10,
-    opacity: 0,
-  });
+    // GSAP Timeline for the reveal
+    gsap.from(".char", {
+      scrollTrigger: {
+        trigger: "#animate-text",
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      },
+      y: 150,
+      stagger: 0.02,
+      duration: 1,
+      ease: "expo.out",
+      rotation: 10,
+      opacity: 0,
+    });
+  }
 
   // 2. Magnetic Button Animation
   const btn = document.querySelector("#magnetic-btn");
+  if (btn) {
+    btn.addEventListener("mousemove", (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
 
-  btn.addEventListener("mousemove", (e) => {
-    const rect = btn.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-
-    gsap.to(btn, {
-      x: x * 0.3,
-      y: y * 0.3,
-      duration: 0.5,
-      ease: "power2.out",
+      gsap.to(btn, {
+        x: x * 0.3,
+        y: y * 0.3,
+        duration: 0.5,
+        ease: "power2.out",
+      });
     });
-  });
 
-  btn.addEventListener("mouseleave", () => {
-    gsap.to(btn, {
-      x: 0,
-      y: 0,
-      duration: 0.7,
-      ease: "elastic.out(1, 0.3)",
+    btn.addEventListener("mouseleave", () => {
+      gsap.to(btn, {
+        x: 0,
+        y: 0,
+        duration: 0.7,
+        ease: "elastic.out(1, 0.3)",
+      });
     });
-  });
+  }
 
   // 3. Background Subtle Pulse
-  gsap.to(".bg-\\[\\#0a0a0a\\]", {
-    backgroundColor: "#111111",
-    duration: 2,
-    repeat: -1,
-    yoyo: true,
-    ease: "sine.inOut",
-  });
+  const subtleBg = document.querySelector(".bg-\\[\\#0a0a0a\\]");
+  if (subtleBg) {
+    gsap.to(subtleBg, {
+      backgroundColor: "#111111",
+      duration: 2,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+    });
+  }
 });
 
 gsap.utils.toArray(".experience-item").forEach((item) => {
@@ -926,7 +1005,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Scroll to Top Onclick logo Home Page
-document.querySelector(".sync").addEventListener("click", () => {
+document.querySelector(".sync")?.addEventListener("click", () => {
   window.scrollTo({
     top: 0,
     behavior: "smooth",
@@ -963,114 +1042,119 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // 3. Magnetic Button Effect
-  const btn = document.querySelector(".magnetic-btn");
-  btn.addEventListener("mousemove", (e) => {
-    const rect = btn.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) * 0.5;
-    const y = (e.clientY - rect.top - rect.height / 2) * 0.5;
+  const magneticBtn = document.querySelector(".magnetic-btn");
+  if (magneticBtn) {
+    magneticBtn.addEventListener("mousemove", (e) => {
+      const rect = magneticBtn.getBoundingClientRect();
+      const x = (e.clientX - rect.left - rect.width / 2) * 0.5;
+      const y = (e.clientY - rect.top - rect.height / 2) * 0.5;
 
-    gsap.to(btn, {
-      x: x,
-      y: y,
-      duration: 0.4,
-      ease: "power2.out",
+      gsap.to(magneticBtn, {
+        x: x,
+        y: y,
+        duration: 0.4,
+        ease: "power2.out",
+      });
     });
-  });
 
-  btn.addEventListener("mouseleave", () => {
-    gsap.to(btn, {
-      x: 0,
-      y: 0,
-      duration: 0.6,
-      ease: "elastic.out(1, 0.3)",
+    magneticBtn.addEventListener("mouseleave", () => {
+      gsap.to(magneticBtn, {
+        x: 0,
+        y: 0,
+        duration: 0.6,
+        ease: "elastic.out(1, 0.3)",
+      });
     });
-  });
+  }
 });
 
 const contactForm = document.getElementById("contact-form");
 
-contactForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
+if (contactForm) {
+  contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  if (!contactForm.checkValidity()) {
-    gsap.to(contactForm, {
-      x: 10,
-      duration: 0.1,
-      repeat: 5,
-      yoyo: true,
-      ease: "power2.inOut",
-      onComplete: () => gsap.set(contactForm, { x: 0 }),
+    if (!contactForm.checkValidity()) {
+      gsap.to(contactForm, {
+        x: 10,
+        duration: 0.1,
+        repeat: 5,
+        yoyo: true,
+        ease: "power2.inOut",
+        onComplete: () => gsap.set(contactForm, { x: 0 }),
+      });
+
+      const inputs = contactForm.querySelectorAll(
+        "input[required], textarea[required]",
+      );
+
+      inputs.forEach((input) => {
+        if (!input.value) {
+          gsap.to(input.parentElement, {
+            borderColor: "#ef4444",
+            duration: 0.3,
+          });
+        }
+      });
+
+      return;
+    }
+
+    const btn = contactForm.querySelector("button");
+    if (!btn) return;
+
+    btn.disabled = true;
+
+    btn.innerHTML = "<span class='relative z-10'>Sending...</span>";
+
+    const formData = new FormData(contactForm);
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
     });
 
-    const inputs = contactForm.querySelectorAll(
-      "input[required], textarea[required]",
-    );
+    const result = await response.json();
 
-    inputs.forEach((input) => {
-      if (!input.value) {
-        gsap.to(input.parentElement, {
-          borderColor: "#ef4444",
-          duration: 0.3,
-        });
-      }
-    });
+    if (result.success) {
+      gsap.to(btn, {
+        scale: 0.9,
+        backgroundColor: "#22c55e",
+        duration: 0.3,
+      });
 
-    return;
-  }
+      btn.innerHTML = "<span class='relative z-10'>Message Sent ✓</span>";
 
-  const btn = contactForm.querySelector("button");
+      contactForm.reset();
+    } else {
+      gsap.to(btn, {
+        backgroundColor: "#ef4444",
+        duration: 0.3,
+      });
 
-  btn.disabled = true;
+      btn.innerHTML = "<span class='relative z-10'>Failed!</span>";
 
-  btn.innerHTML = "<span class='relative z-10'>Sending...</span>";
+      console.log(result);
+    }
 
-  const formData = new FormData(contactForm);
+    setTimeout(() => {
+      btn.disabled = false;
 
-  const response = await fetch("https://api.web3forms.com/submit", {
-    method: "POST",
-    body: formData,
+      btn.innerHTML = `
+              <span class="relative z-10">Submit Now</span>
+              <div class="relative z-10 w-8 h-8 bg-white text-black rounded-full flex items-center justify-center">
+                  →
+              </div>
+          `;
+
+      gsap.to(btn, {
+        scale: 1,
+        backgroundColor: "#ff9800",
+        duration: 0.3,
+      });
+    }, 3000);
   });
-
-  const result = await response.json();
-
-  if (result.success) {
-    gsap.to(btn, {
-      scale: 0.9,
-      backgroundColor: "#22c55e",
-      duration: 0.3,
-    });
-
-    btn.innerHTML = "<span class='relative z-10'>Message Sent ✓</span>";
-
-    contactForm.reset();
-  } else {
-    gsap.to(btn, {
-      backgroundColor: "#ef4444",
-      duration: 0.3,
-    });
-
-    btn.innerHTML = "<span class='relative z-10'>Failed!</span>";
-
-    console.log(result);
-  }
-
-  setTimeout(() => {
-    btn.disabled = false;
-
-    btn.innerHTML = `
-            <span class="relative z-10">Submit Now</span>
-            <div class="relative z-10 w-8 h-8 bg-white text-black rounded-full flex items-center justify-center">
-                →
-            </div>
-        `;
-
-    gsap.to(btn, {
-      scale: 1,
-      backgroundColor: "#ff9800",
-      duration: 0.3,
-    });
-  }, 3000);
-});
+}
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -1338,3 +1422,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+const floatingSocialButtons = document.querySelectorAll("#linkedinBtn, #whatsappBtn");
+
+floatingSocialButtons.forEach((button) => {
+  if (!button) return;
+
+  gsap.fromTo(
+    button,
+    { opacity: 0, scale: 0.8, y: 30 },
+    {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration: 0.8,
+      delay: 0.7,
+      ease: "back.out(1.7)",
+    },
+  );
+
+  gsap.to(button, {
+    y: -6,
+    duration: 1.5,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut",
+  });
+
+  button.addEventListener("mouseenter", () => {
+    gsap.to(button, { scale: 1.08, duration: 0.25, ease: "power2.out" });
+  });
+
+  button.addEventListener("mouseleave", () => {
+    gsap.to(button, { scale: 1, duration: 0.25, ease: "power2.out" });
+  });
+});
+
+

@@ -542,7 +542,6 @@ body {
   transition: width 0.3s ease;
 }
 
-
 @keyframes bounce {
   0%,
   20%,
@@ -567,4 +566,71 @@ body {
   justify-content: center;
   background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 100%);
   border-top: 1px solid #1a1a1a;
+}
+
+.linkedin-btn {
+  transition: box-shadow 0.3s ease;
+}
+
+.linkedin-btn:hover {
+  box-shadow:
+    0 0 0 8px rgba(10, 102, 194, 0.12),
+    0 0 35px rgba(10, 102, 194, 0.45);
+}
+
+.linkedin-icon {
+  transition: transform 0.3s ease;
+}
+
+.linkedin-btn:hover .linkedin-icon {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.social-float {
+  position: fixed;
+  isolation: isolate;
+  cursor: pointer;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.social-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 2px solid currentColor;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.social-tooltip {
+  position: absolute;
+  right: 75px;
+  top: 50%;
+  transform: translateY(-50%) translateX(10px);
+  padding: 7px 12px;
+  border-radius: 8px;
+  background: #18181b;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.linkedin-btn:hover .social-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.linkedin-btn::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  background: rgba(10, 102, 194, 0.15);
+  z-index: -1;
+  opacity: 0;
 }
