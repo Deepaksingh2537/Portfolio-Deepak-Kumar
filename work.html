@@ -10,9 +10,9 @@
 
     <!-- Font Family -->
     <link
-  href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;500;600;700&family=Syncopate:wght@700&display=swap"
-  rel="stylesheet"
-/>
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;500;600;700&family=Syncopate:wght@700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Css File -->
     <link rel="styleSheet" href="portfolio.css" type="text/css" />
@@ -77,16 +77,44 @@
       id="main-nav"
       class="fixed top-0 left-1/2 -translate-x-1/2 bg-[#000] w-full z-[250] p-6 md:py-4 md:px-16 flex justify-between items-center transition-colors duration-500"
     >
-      <a
-        href="index.html"
-        class="sync text-xl font-bold text-[#ff9800] tracking-tighter"
+      <span
+        class="sync cursor-pointer text-xl font-bold text-[#ff9800] tracking-tighter"
       >
         <img
           src="assets/images/logo.png"
-          alt="logo-portfolio"
-          width="120px"
-          height="120px"
+          alt="Portfolio Logo"
+          width="120"
+          height="120"
         />
+      </span>
+
+      <!-- Download CV Button -->
+      <a
+        href="Resume/Deepak_Kumar_Frontend_Developer_CV.pdf"
+        download
+        class="group relative inline-flex items-center gap-2 px-5 py-2.5 border border-[#ff9800] text-[#ff9800] rounded-full font-semibold text-sm md:text-base overflow-hidden transition-all duration-300 hover:text-black"
+      >
+        <span
+          class="absolute inset-0 bg-[#ff9800] translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+        ></span>
+
+        <span class="relative z-10 md:block hidden">Download </span>
+        <span class="relative z-10"> CV</span>
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-y-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"
+          />
+        </svg>
       </a>
 
       <button
@@ -118,7 +146,7 @@
         <!-- Heading -->
         <div class="overflow-hidden py-4 md:py-8">
           <h1
-            class="work-title text-[13vw] md:text-[7vw] font-bold text-white tracking-tighter  leading-[1.2] uppercase inline-block"
+            class="work-title text-[13vw] md:text-[7vw] font-bold text-white tracking-tighter leading-[1.2] uppercase inline-block"
           >
             MY
             <span class="text-[#ff9800] italic pr-6"> Best </span> Work
@@ -126,7 +154,7 @@
         </div>
 
         <!-- Description -->
-        <div class="overflow-hidden ">
+        <div class="overflow-hidden">
           <p
             class="work-description max-w-8xl mx-auto text-gray-400 text-base md:text-md md:text-lg leading-relaxed"
           >
@@ -349,7 +377,9 @@
                 <div
                   class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"
                 ></div>
-                <h4 class="text-md md:text-lg font-bold uppercase">AVAILABLE NOW</h4>
+                <h4 class="text-md md:text-lg font-bold uppercase">
+                  AVAILABLE NOW
+                </h4>
               </div>
             </div>
           </div>
@@ -476,7 +506,9 @@
                 <div
                   class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"
                 ></div>
-                <h4 class="text-md md:text-lg font-bold uppercase">AVAILABLE NOW</h4>
+                <h4 class="text-md md:text-lg font-bold uppercase">
+                  AVAILABLE NOW
+                </h4>
               </div>
             </div>
           </div>
@@ -594,7 +626,9 @@
                 <div
                   class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"
                 ></div>
-                <h4 class="text-md md:text-lg font-bold uppercase">AVAILABLE NOW</h4>
+                <h4 class="text-md md:text-lg font-bold uppercase">
+                  AVAILABLE NOW
+                </h4>
               </div>
             </div>
           </div>
@@ -731,7 +765,9 @@
                 <div
                   class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"
                 ></div>
-                <h4 class="text-md md:text-lg font-bold uppercase">AVAILABLE NOW</h4>
+                <h4 class="text-md md:text-lg font-bold uppercase">
+                  AVAILABLE NOW
+                </h4>
               </div>
             </div>
           </div>
@@ -889,7 +925,9 @@
                 <div
                   class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"
                 ></div>
-                <h4 class="text-md md:text-lg font-bold uppercase">AVAILABLE NOW</h4>
+                <h4 class="text-md md:text-lg font-bold uppercase">
+                  AVAILABLE NOW
+                </h4>
               </div>
             </div>
           </div>
@@ -1009,7 +1047,9 @@
                 >
                   Technology (Likely Stack)
                 </h3>
-                <p class="text-zinc-300 text-md md:text-lg leading-relaxed space-y-2">
+                <p
+                  class="text-zinc-300 text-md md:text-lg leading-relaxed space-y-2"
+                >
                   <span class="font-bold text-[#ffffff] text-[20px]"
                     >Frontend:</span
                   >
@@ -1081,7 +1121,9 @@
                   <div
                     class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"
                   ></div>
-                  <h4 class="text-md md:text-lg font-bold uppercase">AVAILABLE NOW</h4>
+                  <h4 class="text-md md:text-lg font-bold uppercase">
+                    AVAILABLE NOW
+                  </h4>
                 </div>
               </div>
             </div>
@@ -1295,7 +1337,9 @@
                 <div
                   class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"
                 ></div>
-                <h4 class="text-md md:text-lg font-bold uppercase">AVAILABLE NOW</h4>
+                <h4 class="text-md md:text-lg font-bold uppercase">
+                  AVAILABLE NOW
+                </h4>
               </div>
             </div>
           </div>
@@ -1516,7 +1560,9 @@
                 <div
                   class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"
                 ></div>
-                <h4 class="text-md md:text-lg font-bold uppercase">AVAILABLE NOW</h4>
+                <h4 class="text-md md:text-lg font-bold uppercase">
+                  AVAILABLE NOW
+                </h4>
               </div>
             </div>
           </div>
@@ -1738,7 +1784,9 @@
                 <div
                   class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"
                 ></div>
-                <h4 class="text-md md:text-lg font-bold uppercase">AVAILABLE NOW</h4>
+                <h4 class="text-md md:text-lg font-bold uppercase">
+                  AVAILABLE NOW
+                </h4>
               </div>
             </div>
           </div>
